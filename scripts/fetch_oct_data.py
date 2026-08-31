@@ -46,17 +46,24 @@ def _release_assets(repo: str, tag: str, tok: str) -> dict:
     return {a["name"]: a for a in rel["assets"]}
 
 
-def _download(repo: str, asset_id: int, dest: Path, tok: str):
-    # private-repo asset download: the API asset endpoint with octet-stream Accept + token
-    req = urllib.request.Request(f"{API}/repos/{repo}/releases/assets/{asset_id}",
-                                 headers={"Authorization": f"token {tok}", "Accept": "application/octet-stream"})
+def _download(repo: str, asset_id: int, dest: Path, tok: str, expected_size: int | None = None, attempts: int = 5):
+    """Download an asset via curl, retrying until the full file lands. We shell out to curl (universal on
+    macOS/Linux) rather than urllib: curl's HTTP/1.1 + --retry handles the GitHub->S3 redirect and flaky
+    connections robustly, whereas a plain urllib stream can silently truncate large transfers. Each outer
+    attempt re-requests the API endpoint (fresh redirect URL) and the byte count is re-checked."""
+    url = f"{API}/repos/{repo}/releases/assets/{asset_id}"
     dest.parent.mkdir(parents=True, exist_ok=True)
-    with urllib.request.urlopen(req, timeout=120) as r, open(dest, "wb") as f:
-        while True:
-            chunk = r.read(1 << 20)
-            if not chunk:
-                break
-            f.write(chunk)
+    for i in range(1, attempts + 1):
+        rc = subprocess.run(
+            ["curl", "-fL", "--http1.1", "--retry", "5", "--retry-all-errors", "--retry-delay", "2",
+             "--max-time", "3600", "-s", "-H", f"Authorization: token {tok}",
+             "-H", "Accept: application/octet-stream", "-o", str(dest), url],
+        ).returncode
+        got = dest.stat().st_size if dest.exists() else 0
+        if rc == 0 and (expected_size is None or got == expected_size):
+            return True
+        print(f"    attempt {i}/{attempts}: curl rc={rc}, {got}/{expected_size} bytes, retrying")
+    return False
 
 
 def main():
@@ -72,7 +79,9 @@ def main():
             print(f"[!] {name} not in release {tag} — skipping"); continue
         dest = staging / name
         print(f"[fetch] {name} ({spec['size']/1e6:.1f} MB)...")
-        _download(repo, assets[name]["id"], dest, tok)
+        if not _download(repo, assets[name]["id"], dest, tok, spec["size"]):
+            sys.exit(f"[x] {name}: could not fetch the full file after retries "
+                     f"({dest.stat().st_size if dest.exists() else 0}/{spec['size']} bytes)")
         # verify
         if dest.stat().st_size != spec["size"]:
             sys.exit(f"[x] {name}: size {dest.stat().st_size} != manifest {spec['size']}")
