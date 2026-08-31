@@ -1,0 +1,2138 @@
+{
+  "meta": {
+    "sources": [
+      "harvard_gf",
+      "harvard_gdp"
+    ],
+    "pairs": [
+      "cirrus_to_spectralis",
+      "cirrus_to_topcon",
+      "cirrus_to_rtvue"
+    ],
+    "seeds": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9
+    ],
+    "limit": 1000,
+    "n_aug": 6,
+    "metric": "paired-degradation (retention + referral_flip + delta_auc + delta_sens@spec + spec_realized), sens@spec op point"
+  },
+  "grid": {
+    "harvard_gf|cirrus_to_spectralis": {
+      "source": "harvard_gf",
+      "pair": "cirrus_to_spectralis",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 0.9633912971129045,
+          "referral_flip": 0.07125000000000001,
+          "delta_auc": 0.015162695288703398,
+          "delta_sens_at_spec": 0.019149715961150837,
+          "spec_realized_shift": 0.8909083549222798
+        },
+        "dr": {
+          "retention": 1.0,
+          "referral_flip": 0.07875,
+          "delta_auc": 0.002067300317415366,
+          "delta_sens_at_spec": -0.007042253521126751,
+          "spec_realized_shift": 0.8862567204301075
+        },
+        "ComBat_full": {
+          "retention": 0.9914641203703702,
+          "referral_flip": 0.08499999999999999,
+          "delta_auc": 0.015186545986390965,
+          "delta_sens_at_spec": 0.004606489325652385,
+          "spec_realized_shift": 0.8874400109694227
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.07875,
+          "delta_auc": 0.015475420153705066,
+          "delta_sens_at_spec": -0.02755011978312949,
+          "spec_realized_shift": 0.8600730240549828
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.9811320754716982,
+            "referral_flip": 0.065,
+            "delta_auc": 0.016952123397435903,
+            "delta_sens_at_spec": 0.009615384615384581,
+            "spec_realized_shift": 0.890625
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.07,
+            "delta_auc": -0.0036057692307691624,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8854166666666666
+          },
+          "ComBat_full": {
+            "retention": 0.9907407407407406,
+            "referral_flip": 0.0475,
+            "delta_auc": 0.015374599358974339,
+            "delta_sens_at_spec": 0.004807692307692402,
+            "spec_realized_shift": 0.9114583333333334
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.0825,
+            "delta_auc": 0.015399639423076983,
+            "delta_sens_at_spec": -0.043269230769230727,
+            "spec_realized_shift": 0.8541666666666666
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.09,
+            "delta_auc": 0.01083902047370544,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.9095744680851063
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1075,
+            "delta_auc": 0.002358490566037874,
+            "delta_sens_at_spec": -0.037735849056603765,
+            "spec_realized_shift": 0.9042553191489362
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.105,
+            "delta_auc": 0.010061220393416281,
+            "delta_sens_at_spec": -0.004716981132075526,
+            "spec_realized_shift": 0.9042553191489362
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.011817543155359322,
+            "delta_sens_at_spec": -0.023584905660377298,
+            "spec_realized_shift": 0.8936170212765957
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9663865546218486,
+            "referral_flip": 0.0675,
+            "delta_auc": 0.015556222488995575,
+            "delta_sens_at_spec": 0.019607843137254943,
+            "spec_realized_shift": 0.8724489795918368
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.06,
+            "delta_auc": 0.004726890756302393,
+            "delta_sens_at_spec": -0.02941176470588236,
+            "spec_realized_shift": 0.8826530612244898
+          },
+          "ComBat_full": {
+            "retention": 0.9833333333333334,
+            "referral_flip": 0.06,
+            "delta_auc": 0.008028211284513809,
+            "delta_sens_at_spec": 0.009803921568627416,
+            "spec_realized_shift": 0.8877551020408163
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.075,
+            "delta_auc": 0.01308023209283693,
+            "delta_sens_at_spec": -0.02941176470588236,
+            "spec_realized_shift": 0.8673469387755102
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9385964912280701,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.03086929330831767,
+            "delta_sens_at_spec": 0.034146341463414664,
+            "spec_realized_shift": 0.8923076923076924
+          },
+          "dr": {
+            "retention": 0.9739130434782608,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.0017761100687928577,
+            "delta_sens_at_spec": 0.014634146341463428,
+            "spec_realized_shift": 0.9025641025641026
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.0825,
+            "delta_auc": 0.026766729205753514,
+            "delta_sens_at_spec": -0.019512195121951126,
+            "spec_realized_shift": 0.8871794871794871
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.085,
+            "delta_auc": 0.03219512195121954,
+            "delta_sens_at_spec": -0.014634146341463317,
+            "spec_realized_shift": 0.8717948717948718
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9603960396039604,
+            "referral_flip": 0.07,
+            "delta_auc": 0.01085318058486584,
+            "delta_sens_at_spec": 0.01869158878504673,
+            "spec_realized_shift": 0.9301075268817204
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1025,
+            "delta_auc": -0.0031403879007134705,
+            "delta_sens_at_spec": -0.02336448598130836,
+            "spec_realized_shift": 0.8870967741935484
+          },
+          "ComBat_full": {
+            "retention": 0.9801980198019802,
+            "referral_flip": 0.105,
+            "delta_auc": 0.01499849261380759,
+            "delta_sens_at_spec": 0.009345794392523366,
+            "spec_realized_shift": 0.9086021505376344
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.08,
+            "delta_auc": 0.01555120088433315,
+            "delta_sens_at_spec": -0.03738317757009346,
+            "spec_realized_shift": 0.8763440860215054
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.0675,
+            "delta_auc": 0.004178760884796295,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.9020618556701031
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.0875,
+            "delta_auc": 0.0011260134120708587,
+            "delta_sens_at_spec": -0.014563106796116498,
+            "spec_realized_shift": 0.9020618556701031
+          },
+          "ComBat_full": {
+            "retention": 0.9905660377358491,
+            "referral_flip": 0.09,
+            "delta_auc": 0.007331598438594766,
+            "delta_sens_at_spec": 0.004854368932038833,
+            "spec_realized_shift": 0.8865979381443299
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.07,
+            "delta_auc": 0.0034030627564807236,
+            "delta_sens_at_spec": -0.029126213592232997,
+            "spec_realized_shift": 0.865979381443299
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9586776859504131,
+            "referral_flip": 0.08,
+            "delta_auc": 0.014769168088411222,
+            "delta_sens_at_spec": 0.022026431718061734,
+            "spec_realized_shift": 0.8786127167630058
+          },
+          "dr": {
+            "retention": 0.9565217391304348,
+            "referral_flip": 0.1025,
+            "delta_auc": -0.0004583534923989774,
+            "delta_sens_at_spec": 0.026431718061673992,
+            "spec_realized_shift": 0.8554913294797688
+          },
+          "ComBat_full": {
+            "retention": 0.9921874999999999,
+            "referral_flip": 0.07,
+            "delta_auc": 0.012681113289704782,
+            "delta_sens_at_spec": 0.004405286343612369,
+            "spec_realized_shift": 0.8728323699421965
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.0775,
+            "delta_auc": 0.019836520587711126,
+            "delta_sens_at_spec": -0.004405286343612369,
+            "spec_realized_shift": 0.838150289017341
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9754098360655736,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.020586979990459442,
+            "delta_sens_at_spec": 0.014084507042253613,
+            "spec_realized_shift": 0.8556149732620321
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.085,
+            "delta_auc": 0.011272626848434442,
+            "delta_sens_at_spec": -0.014084507042253502,
+            "spec_realized_shift": 0.8609625668449198
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.0875,
+            "delta_auc": 0.022871632647937568,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8877005347593583
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.0925,
+            "delta_auc": 0.02515628530541536,
+            "delta_sens_at_spec": -0.032863849765258246,
+            "spec_realized_shift": 0.8288770053475936
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9473684210526314,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.025512948589871742,
+            "delta_sens_at_spec": 0.030303030303030387,
+            "spec_realized_shift": 0.8875739644970414
+          },
+          "dr": {
+            "retention": 0.9296875,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.01442147595993748,
+            "delta_sens_at_spec": 0.038961038961038974,
+            "spec_realized_shift": 0.9053254437869822
+          },
+          "ComBat_full": {
+            "retention": 0.9846153846153846,
+            "referral_flip": 0.09,
+            "delta_auc": 0.02028740490278924,
+            "delta_sens_at_spec": 0.008658008658008698,
+            "spec_realized_shift": 0.8757396449704142
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.08,
+            "delta_auc": 0.025103102026178936,
+            "delta_sens_at_spec": -0.025974025974025983,
+            "spec_realized_shift": 0.8106508875739645
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9279279279279278,
+            "referral_flip": 0.065,
+            "delta_auc": 0.01314109784485995,
+            "delta_sens_at_spec": 0.03864734299516914,
+            "spec_realized_shift": 0.8911917098445595
+          },
+          "dr": {
+            "retention": 0.9391304347826086,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.0047057645615879995,
+            "delta_sens_at_spec": 0.033816425120772986,
+            "spec_realized_shift": 0.8808290155440415
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.07,
+            "delta_auc": 0.016244900002503115,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8497409326424871
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.07,
+            "delta_auc": 0.01499336687442121,
+            "delta_sens_at_spec": -0.01449275362318836,
+            "spec_realized_shift": 0.8290155440414507
+          }
+        }
+      ]
+    },
+    "harvard_gf|cirrus_to_topcon": {
+      "source": "harvard_gf",
+      "pair": "cirrus_to_topcon",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 0.6484962406015038,
+          "referral_flip": 0.15125,
+          "delta_auc": 0.05248879106931037,
+          "delta_sens_at_spec": 0.19665447820787627,
+          "spec_realized_shift": 0.9328811532166688
+        },
+        "dr": {
+          "retention": 0.9924242424242424,
+          "referral_flip": 0.10625,
+          "delta_auc": 0.007506776430119877,
+          "delta_sens_at_spec": -0.0003879768030711772,
+          "spec_realized_shift": 0.883962894868795
+        },
+        "ComBat_full": {
+          "retention": 0.9372781617784419,
+          "referral_flip": 0.16499999999999998,
+          "delta_auc": 0.058418932417952874,
+          "delta_sens_at_spec": 0.03045061647141417,
+          "spec_realized_shift": 0.8216975588910849
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.15875,
+          "delta_auc": 0.06295003509388969,
+          "delta_sens_at_spec": 0.0,
+          "spec_realized_shift": 0.7821269088703897
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.6886792452830188,
+            "referral_flip": 0.1325,
+            "delta_auc": 0.039913862179487114,
+            "delta_sens_at_spec": 0.15865384615384615,
+            "spec_realized_shift": 0.9479166666666666
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.08,
+            "delta_auc": -0.009239783653846145,
+            "delta_sens_at_spec": -0.009615384615384581,
+            "spec_realized_shift": 0.9010416666666666
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.1075,
+            "delta_auc": 0.048552684294871806,
+            "delta_sens_at_spec": -0.009615384615384581,
+            "spec_realized_shift": 0.8177083333333334
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.155,
+            "delta_auc": 0.04311899038461542,
+            "delta_sens_at_spec": -0.038461538461538436,
+            "spec_realized_shift": 0.765625
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.7008547008547008,
+            "referral_flip": 0.1925,
+            "delta_auc": 0.03153853873946222,
+            "delta_sens_at_spec": 0.16509433962264153,
+            "spec_realized_shift": 0.9308510638297872
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.14,
+            "delta_auc": 0.007702729827378629,
+            "delta_sens_at_spec": -0.009433962264150941,
+            "spec_realized_shift": 0.8723404255319149
+          },
+          "ComBat_full": {
+            "retention": 0.9224137931034484,
+            "referral_flip": 0.175,
+            "delta_auc": 0.03246688077077475,
+            "delta_sens_at_spec": 0.04245283018867918,
+            "spec_realized_shift": 0.8776595744680851
+          },
+          "ComBat_loc": {
+            "retention": 0.9658119658119658,
+            "referral_flip": 0.1675,
+            "delta_auc": 0.035578081091930835,
+            "delta_sens_at_spec": 0.018867924528301883,
+            "spec_realized_shift": 0.8351063829787234
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6134453781512604,
+            "referral_flip": 0.1475,
+            "delta_auc": 0.048644457783113215,
+            "delta_sens_at_spec": 0.2254901960784314,
+            "spec_realized_shift": 0.9081632653061225
+          },
+          "dr": {
+            "retention": 0.9816513761467891,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.005227090836334547,
+            "delta_sens_at_spec": 0.009803921568627416,
+            "spec_realized_shift": 0.8520408163265306
+          },
+          "ComBat_full": {
+            "retention": 0.9749999999999999,
+            "referral_flip": 0.1425,
+            "delta_auc": 0.04331732693077228,
+            "delta_sens_at_spec": 0.014705882352941235,
+            "spec_realized_shift": 0.8010204081632653
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1825,
+            "delta_auc": 0.04856942777110829,
+            "delta_sens_at_spec": -0.019607843137254943,
+            "spec_realized_shift": 0.7806122448979592
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6578947368421052,
+            "referral_flip": 0.1475,
+            "delta_auc": 0.07734834271419633,
+            "delta_sens_at_spec": 0.19024390243902445,
+            "spec_realized_shift": 0.9384615384615385
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1075,
+            "delta_auc": 0.005753595997498251,
+            "delta_sens_at_spec": -0.0536585365853659,
+            "spec_realized_shift": 0.8974358974358975
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.1575,
+            "delta_auc": 0.0818511569731083,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1575,
+            "delta_auc": 0.08795497185741086,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.7846153846153846
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6831683168316831,
+            "referral_flip": 0.155,
+            "delta_auc": 0.05044719123706165,
+            "delta_sens_at_spec": 0.14953271028037385,
+            "spec_realized_shift": 0.9516129032258065
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.115,
+            "delta_auc": 0.0073108230328611246,
+            "delta_sens_at_spec": -0.02336448598130836,
+            "spec_realized_shift": 0.8870967741935484
+          },
+          "ComBat_full": {
+            "retention": 0.9405940594059405,
+            "referral_flip": 0.1725,
+            "delta_auc": 0.055647673600643044,
+            "delta_sens_at_spec": 0.028037383177570097,
+            "spec_realized_shift": 0.8602150537634409
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.16,
+            "delta_auc": 0.05919003115264776,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8118279569892473
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6428571428571429,
+            "referral_flip": 0.125,
+            "delta_auc": 0.06385747172455203,
+            "delta_sens_at_spec": 0.19417475728155337,
+            "spec_realized_shift": 0.9381443298969072
+          },
+          "dr": {
+            "retention": 0.9009009009009009,
+            "referral_flip": 0.105,
+            "delta_auc": 0.023971574416975283,
+            "delta_sens_at_spec": 0.05339805825242716,
+            "spec_realized_shift": 0.9175257731958762
+          },
+          "ComBat_full": {
+            "retention": 0.9245283018867925,
+            "referral_flip": 0.1825,
+            "delta_auc": 0.06731057952156938,
+            "delta_sens_at_spec": 0.03883495145631066,
+            "spec_realized_shift": 0.8247422680412371
+          },
+          "ComBat_loc": {
+            "retention": 0.9732142857142857,
+            "referral_flip": 0.1375,
+            "delta_auc": 0.06671003903513162,
+            "delta_sens_at_spec": 0.014563106796116498,
+            "spec_realized_shift": 0.7835051546391752
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6198347107438016,
+            "referral_flip": 0.19,
+            "delta_auc": 0.05515520358534276,
+            "delta_sens_at_spec": 0.20264317180616742,
+            "spec_realized_shift": 0.9075144508670521
+          },
+          "dr": {
+            "retention": 0.9444444444444444,
+            "referral_flip": 0.1125,
+            "delta_auc": 0.0008403147360646068,
+            "delta_sens_at_spec": 0.03083700440528636,
+            "spec_realized_shift": 0.8901734104046243
+          },
+          "ComBat_full": {
+            "retention": 0.9296874999999999,
+            "referral_flip": 0.145,
+            "delta_auc": 0.0611901912352627,
+            "delta_sens_at_spec": 0.0396475770925111,
+            "spec_realized_shift": 0.8265895953757225
+          },
+          "ComBat_loc": {
+            "retention": 0.9344262295081969,
+            "referral_flip": 0.1825,
+            "delta_auc": 0.0678617809579588,
+            "delta_sens_at_spec": 0.03524229074889862,
+            "spec_realized_shift": 0.8092485549132948
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6229508196721311,
+            "referral_flip": 0.1725,
+            "delta_auc": 0.05453039090155909,
+            "delta_sens_at_spec": 0.21596244131455405,
+            "spec_realized_shift": 0.9144385026737968
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.125,
+            "delta_auc": 0.013682809871708113,
+            "delta_sens_at_spec": -0.023474178403755874,
+            "spec_realized_shift": 0.8449197860962567
+          },
+          "ComBat_full": {
+            "retention": 0.9339622641509433,
+            "referral_flip": 0.1925,
+            "delta_auc": 0.06417112299465233,
+            "delta_sens_at_spec": 0.032863849765258246,
+            "spec_realized_shift": 0.8288770053475936
+          },
+          "ComBat_loc": {
+            "retention": 0.9152542372881356,
+            "referral_flip": 0.19,
+            "delta_auc": 0.07225527855188163,
+            "delta_sens_at_spec": 0.04694835680751175,
+            "spec_realized_shift": 0.7807486631016043
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6541353383458647,
+            "referral_flip": 0.165,
+            "delta_auc": 0.0725172263633802,
+            "delta_sens_at_spec": 0.19913419913419916,
+            "spec_realized_shift": 0.9349112426035503
+          },
+          "dr": {
+            "retention": 0.984848484848485,
+            "referral_flip": 0.1,
+            "delta_auc": 0.02899664438125993,
+            "delta_sens_at_spec": 0.008658008658008587,
+            "spec_realized_shift": 0.8402366863905325
+          },
+          "ComBat_full": {
+            "retention": 0.9153846153846152,
+            "referral_flip": 0.175,
+            "delta_auc": 0.06934091549476151,
+            "delta_sens_at_spec": 0.04761904761904767,
+            "spec_realized_shift": 0.7988165680473372
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1475,
+            "delta_auc": 0.07740976971746194,
+            "delta_sens_at_spec": -0.008658008658008587,
+            "spec_realized_shift": 0.7218934911242604
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6216216216216215,
+            "referral_flip": 0.1175,
+            "delta_auc": 0.037946484443443285,
+            "delta_sens_at_spec": 0.20289855072463775,
+            "spec_realized_shift": 0.927461139896373
+          },
+          "dr": {
+            "retention": 0.9181818181818181,
+            "referral_flip": 0.105,
+            "delta_auc": 0.01163925809116162,
+            "delta_sens_at_spec": 0.043478260869565244,
+            "spec_realized_shift": 0.8808290155440415
+          },
+          "ComBat_full": {
+            "retention": 0.990990990990991,
+            "referral_flip": 0.14,
+            "delta_auc": 0.04878476133263254,
+            "delta_sens_at_spec": 0.004830917874396157,
+            "spec_realized_shift": 0.8186528497409327
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1375,
+            "delta_auc": 0.04890991464544081,
+            "delta_sens_at_spec": -0.009661835748792202,
+            "spec_realized_shift": 0.7772020725388601
+          }
+        }
+      ]
+    },
+    "harvard_gf|cirrus_to_rtvue": {
+      "source": "harvard_gf",
+      "pair": "cirrus_to_rtvue",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 0.6749774289881241,
+          "referral_flip": 0.13,
+          "delta_auc": 0.05216785855937467,
+          "delta_sens_at_spec": 0.17769052331396715,
+          "spec_realized_shift": 0.9263076241134751
+        },
+        "dr": {
+          "retention": 0.9165737803309613,
+          "referral_flip": 0.1125,
+          "delta_auc": 0.013924369010721804,
+          "delta_sens_at_spec": 0.04273005032350824,
+          "spec_realized_shift": 0.9062709693161715
+        },
+        "ComBat_full": {
+          "retention": 0.9738993710691823,
+          "referral_flip": 0.1125,
+          "delta_auc": 0.03254842152996684,
+          "delta_sens_at_spec": 0.014128797944902127,
+          "spec_realized_shift": 0.8631009615384615
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.16125,
+          "delta_auc": 0.031190225760515278,
+          "delta_sens_at_spec": -0.09586440209886771,
+          "spec_realized_shift": 0.7084249084249084
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.7735849056603774,
+            "referral_flip": 0.1225,
+            "delta_auc": 0.04572315705128205,
+            "delta_sens_at_spec": 0.11538461538461536,
+            "spec_realized_shift": 0.9270833333333334
+          },
+          "dr": {
+            "retention": 0.9065420560747665,
+            "referral_flip": 0.0975,
+            "delta_auc": 0.005809294871794934,
+            "delta_sens_at_spec": 0.04807692307692302,
+            "spec_realized_shift": 0.921875
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.065,
+            "delta_auc": 0.028871193910256387,
+            "delta_sens_at_spec": -0.004807692307692291,
+            "spec_realized_shift": 0.8697916666666666
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.16,
+            "delta_auc": 0.028170072115384803,
+            "delta_sens_at_spec": -0.08653846153846145,
+            "spec_realized_shift": 0.6770833333333334
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.7008547008547008,
+            "referral_flip": 0.155,
+            "delta_auc": 0.0359293456443196,
+            "delta_sens_at_spec": 0.16509433962264153,
+            "spec_realized_shift": 0.925531914893617
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1525,
+            "delta_auc": 0.009785226816539483,
+            "delta_sens_at_spec": -0.028301886792452824,
+            "spec_realized_shift": 0.8936170212765957
+          },
+          "ComBat_full": {
+            "retention": 0.9655172413793104,
+            "referral_flip": 0.135,
+            "delta_auc": 0.015606182256121981,
+            "delta_sens_at_spec": 0.018867924528301883,
+            "spec_realized_shift": 0.8882978723404256
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1475,
+            "delta_auc": 0.017337414692894404,
+            "delta_sens_at_spec": -0.10377358490566035,
+            "spec_realized_shift": 0.7925531914893617
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6722689075630252,
+            "referral_flip": 0.135,
+            "delta_auc": 0.05154561824729886,
+            "delta_sens_at_spec": 0.19117647058823534,
+            "spec_realized_shift": 0.9387755102040817
+          },
+          "dr": {
+            "retention": 0.9528301886792453,
+            "referral_flip": 0.1,
+            "delta_auc": 0.03426370548219282,
+            "delta_sens_at_spec": 0.02450980392156865,
+            "spec_realized_shift": 0.8775510204081632
+          },
+          "ComBat_full": {
+            "retention": 0.9666666666666666,
+            "referral_flip": 0.085,
+            "delta_auc": 0.019557823129251695,
+            "delta_sens_at_spec": 0.019607843137254943,
+            "spec_realized_shift": 0.8469387755102041
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.17,
+            "delta_auc": 0.028161264505802253,
+            "delta_sens_at_spec": -0.09313725490196079,
+            "spec_realized_shift": 0.7142857142857143
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6578947368421052,
+            "referral_flip": 0.115,
+            "delta_auc": 0.07679799874921822,
+            "delta_sens_at_spec": 0.19024390243902445,
+            "spec_realized_shift": 0.9179487179487179
+          },
+          "dr": {
+            "retention": 0.9901960784313726,
+            "referral_flip": 0.105,
+            "delta_auc": 0.009681050656660473,
+            "delta_sens_at_spec": 0.004878048780487809,
+            "spec_realized_shift": 0.9179487179487179
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.115,
+            "delta_auc": 0.04780487804878042,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8564102564102564
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1625,
+            "delta_auc": 0.054183864915572144,
+            "delta_sens_at_spec": -0.07804878048780484,
+            "spec_realized_shift": 0.7025641025641025
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.7425742574257426,
+            "referral_flip": 0.125,
+            "delta_auc": 0.05032157572103302,
+            "delta_sens_at_spec": 0.12149532710280375,
+            "spec_realized_shift": 0.9516129032258065
+          },
+          "dr": {
+            "retention": 0.926605504587156,
+            "referral_flip": 0.13,
+            "delta_auc": 0.018063511204904126,
+            "delta_sens_at_spec": 0.03738317757009346,
+            "spec_realized_shift": 0.8978494623655914
+          },
+          "ComBat_full": {
+            "retention": 0.9900990099009901,
+            "referral_flip": 0.1275,
+            "delta_auc": 0.03298663450909456,
+            "delta_sens_at_spec": 0.004672897196261683,
+            "spec_realized_shift": 0.8709677419354839
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.165,
+            "delta_auc": 0.031077278665460617,
+            "delta_sens_at_spec": -0.10280373831775697,
+            "spec_realized_shift": 0.7419354838709677
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6607142857142857,
+            "referral_flip": 0.12,
+            "delta_auc": 0.05259733760384355,
+            "delta_sens_at_spec": 0.1844660194174757,
+            "spec_realized_shift": 0.9536082474226805
+          },
+          "dr": {
+            "retention": 0.8070175438596492,
+            "referral_flip": 0.1275,
+            "delta_auc": 0.03983585226704023,
+            "delta_sens_at_spec": 0.10679611650485432,
+            "spec_realized_shift": 0.9072164948453608
+          },
+          "ComBat_full": {
+            "retention": 0.9056603773584906,
+            "referral_flip": 0.145,
+            "delta_auc": 0.03500650585526954,
+            "delta_sens_at_spec": 0.04854368932038833,
+            "spec_realized_shift": 0.8711340206185567
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1275,
+            "delta_auc": 0.03130317285556994,
+            "delta_sens_at_spec": -0.11165048543689327,
+            "spec_realized_shift": 0.7268041237113402
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6776859504132231,
+            "referral_flip": 0.155,
+            "delta_auc": 0.05614830281887395,
+            "delta_sens_at_spec": 0.17180616740088112,
+            "spec_realized_shift": 0.9075144508670521
+          },
+          "dr": {
+            "retention": 0.8617886178861789,
+            "referral_flip": 0.115,
+            "delta_auc": 0.009167069847979548,
+            "delta_sens_at_spec": 0.07488986784140966,
+            "spec_realized_shift": 0.9075144508670521
+          },
+          "ComBat_full": {
+            "retention": 0.9531249999999999,
+            "referral_flip": 0.1025,
+            "delta_auc": 0.032110208550839126,
+            "delta_sens_at_spec": 0.026431718061674103,
+            "spec_realized_shift": 0.8554913294797688
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.17,
+            "delta_auc": 0.041812024139950665,
+            "delta_sens_at_spec": -0.08370044052863446,
+            "spec_realized_shift": 0.7341040462427746
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6393442622950819,
+            "referral_flip": 0.1625,
+            "delta_auc": 0.06266475860510656,
+            "delta_sens_at_spec": 0.20657276995305168,
+            "spec_realized_shift": 0.893048128342246
+          },
+          "dr": {
+            "retention": 0.9495798319327732,
+            "referral_flip": 0.1125,
+            "delta_auc": 0.02334864803796044,
+            "delta_sens_at_spec": 0.028169014084507005,
+            "spec_realized_shift": 0.893048128342246
+          },
+          "ComBat_full": {
+            "retention": 0.9811320754716981,
+            "referral_flip": 0.13,
+            "delta_auc": 0.038738670884487014,
+            "delta_sens_at_spec": 0.009389671361502372,
+            "spec_realized_shift": 0.8770053475935828
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1925,
+            "delta_auc": 0.04019482312771461,
+            "delta_sens_at_spec": -0.09859154929577463,
+            "spec_realized_shift": 0.7005347593582888
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.7368421052631579,
+            "referral_flip": 0.135,
+            "delta_auc": 0.06508875739644959,
+            "delta_sens_at_spec": 0.15151515151515155,
+            "spec_realized_shift": 0.9408284023668639
+          },
+          "dr": {
+            "retention": 0.8999999999999998,
+            "referral_flip": 0.1125,
+            "delta_auc": 0.021414482952944458,
+            "delta_sens_at_spec": 0.05627705627705637,
+            "spec_realized_shift": 0.9053254437869822
+          },
+          "ComBat_full": {
+            "retention": 0.9615384615384615,
+            "referral_flip": 0.11,
+            "delta_auc": 0.040600425215809643,
+            "delta_sens_at_spec": 0.02164502164502169,
+            "spec_realized_shift": 0.8165680473372781
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.1425,
+            "delta_auc": 0.04464766003227527,
+            "delta_sens_at_spec": -0.07792207792207784,
+            "spec_realized_shift": 0.6568047337278107
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6576576576576576,
+            "referral_flip": 0.0975,
+            "delta_auc": 0.051738379514905786,
+            "delta_sens_at_spec": 0.18357487922705318,
+            "spec_realized_shift": 0.9067357512953368
+          },
+          "dr": {
+            "retention": 0.8695652173913043,
+            "referral_flip": 0.1,
+            "delta_auc": -0.0017521463793145342,
+            "delta_sens_at_spec": 0.07246376811594207,
+            "spec_realized_shift": 0.917098445595855
+          },
+          "ComBat_full": {
+            "retention": 1.0,
+            "referral_flip": 0.1,
+            "delta_auc": 0.030086856399088924,
+            "delta_sens_at_spec": -0.009661835748792202,
+            "spec_realized_shift": 0.8497409326424871
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.14,
+            "delta_auc": 0.02891041525869198,
+            "delta_sens_at_spec": -0.1159420289855072,
+            "spec_realized_shift": 0.6787564766839378
+          }
+        }
+      ]
+    },
+    "harvard_gdp|cirrus_to_spectralis": {
+      "source": "harvard_gdp",
+      "pair": "cirrus_to_spectralis",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 1.0,
+          "referral_flip": 0.25125,
+          "delta_auc": 0.1303930394521272,
+          "delta_sens_at_spec": -0.12009162303664922,
+          "spec_realized_shift": 0.6354458835175714
+        },
+        "dr": {
+          "retention": 0.9797897315504748,
+          "referral_flip": 0.08,
+          "delta_auc": 0.007553711247463568,
+          "delta_sens_at_spec": 0.011602098466505173,
+          "spec_realized_shift": 0.8927775944563603
+        },
+        "ComBat_full": {
+          "retention": 0.5527347781217751,
+          "referral_flip": 0.15625,
+          "delta_auc": 0.05422510833386629,
+          "delta_sens_at_spec": 0.26089588377723966,
+          "spec_realized_shift": 0.9484053574071334
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.305,
+          "delta_auc": 0.0897583465322444,
+          "delta_sens_at_spec": -0.1628039513677812,
+          "spec_realized_shift": 0.5722565360859633
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.8921568627450981,
+            "referral_flip": 0.1425,
+            "delta_auc": 0.031035443743507862,
+            "delta_sens_at_spec": 0.062146892655367214,
+            "spec_realized_shift": 0.9013452914798207
+          },
+          "dr": {
+            "retention": 0.9793814432989693,
+            "referral_flip": 0.09,
+            "delta_auc": -0.010767398849788501,
+            "delta_sens_at_spec": 0.011299435028248483,
+            "spec_realized_shift": 0.9282511210762332
+          },
+          "ComBat_full": {
+            "retention": 0.4230769230769231,
+            "referral_flip": 0.1925,
+            "delta_auc": 0.02112943680170254,
+            "delta_sens_at_spec": 0.3389830508474576,
+            "spec_realized_shift": 0.9865470852017937
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.21,
+            "delta_auc": 0.040536089787438945,
+            "delta_sens_at_spec": -0.14124293785310738,
+            "spec_realized_shift": 0.6860986547085202
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.2875,
+            "delta_auc": 0.14175389983579634,
+            "delta_sens_at_spec": -0.125,
+            "spec_realized_shift": 0.5818965517241379
+          },
+          "dr": {
+            "retention": 0.9801980198019803,
+            "referral_flip": 0.0725,
+            "delta_auc": 0.01878078817733997,
+            "delta_sens_at_spec": 0.011904761904761862,
+            "spec_realized_shift": 0.9051724137931034
+          },
+          "ComBat_full": {
+            "retention": 0.5686274509803922,
+            "referral_flip": 0.1875,
+            "delta_auc": 0.06634852216748754,
+            "delta_sens_at_spec": 0.26190476190476186,
+            "spec_realized_shift": 0.9568965517241379
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3225,
+            "delta_auc": 0.0887469211822659,
+            "delta_sens_at_spec": -0.1607142857142858,
+            "spec_realized_shift": 0.5431034482758621
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.44,
+            "delta_auc": 0.18424242424242443,
+            "delta_sens_at_spec": -0.2722222222222222,
+            "spec_realized_shift": 0.42272727272727273
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1075,
+            "delta_auc": -0.00810606060606045,
+            "delta_sens_at_spec": -0.01666666666666672,
+            "spec_realized_shift": 0.9090909090909091
+          },
+          "ComBat_full": {
+            "retention": 0.9886363636363636,
+            "referral_flip": 0.155,
+            "delta_auc": 0.0429040404040405,
+            "delta_sens_at_spec": 0.005555555555555536,
+            "spec_realized_shift": 0.8681818181818182
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.585,
+            "delta_auc": 0.10103535353535342,
+            "delta_sens_at_spec": -0.43888888888888894,
+            "spec_realized_shift": 0.20909090909090908
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.3175,
+            "delta_auc": 0.1282868325973504,
+            "delta_sens_at_spec": -0.15957446808510645,
+            "spec_realized_shift": 0.5754716981132075
+          },
+          "dr": {
+            "retention": 0.8823529411764707,
+            "referral_flip": 0.08,
+            "delta_auc": 0.03414793255720594,
+            "delta_sens_at_spec": 0.06382978723404248,
+            "spec_realized_shift": 0.910377358490566
+          },
+          "ComBat_full": {
+            "retention": 0.5825242718446603,
+            "referral_flip": 0.155,
+            "delta_auc": 0.07040345242874335,
+            "delta_sens_at_spec": 0.22872340425531912,
+            "spec_realized_shift": 0.910377358490566
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.2875,
+            "delta_auc": 0.07913488558811721,
+            "delta_sens_at_spec": -0.16489361702127658,
+            "spec_realized_shift": 0.5660377358490566
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.34,
+            "delta_auc": 0.13249924630690402,
+            "delta_sens_at_spec": -0.17741935483870974,
+            "spec_realized_shift": 0.5280373831775701
+          },
+          "dr": {
+            "retention": 0.8990825688073394,
+            "referral_flip": 0.1125,
+            "delta_auc": 0.02783639835192453,
+            "delta_sens_at_spec": 0.05913978494623662,
+            "spec_realized_shift": 0.8785046728971962
+          },
+          "ComBat_full": {
+            "retention": 0.4571428571428571,
+            "referral_flip": 0.1775,
+            "delta_auc": 0.06554617626369208,
+            "delta_sens_at_spec": 0.30645161290322587,
+            "spec_realized_shift": 0.9345794392523364
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3475,
+            "delta_auc": 0.0907697718822229,
+            "delta_sens_at_spec": -0.18279569892473113,
+            "spec_realized_shift": 0.5514018691588785
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.215,
+            "delta_auc": 0.04276159222425413,
+            "delta_sens_at_spec": -0.11518324607329844,
+            "spec_realized_shift": 0.6889952153110048
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.075,
+            "delta_auc": -0.010846965104336248,
+            "delta_sens_at_spec": -0.041884816753926746,
+            "spec_realized_shift": 0.8803827751196173
+          },
+          "ComBat_full": {
+            "retention": 0.7523809523809524,
+            "referral_flip": 0.14,
+            "delta_auc": 0.006212580475462914,
+            "delta_sens_at_spec": 0.13612565445026176,
+            "spec_realized_shift": 0.9617224880382775
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.2625,
+            "delta_auc": 0.027605901951451628,
+            "delta_sens_at_spec": -0.2094240837696335,
+            "spec_realized_shift": 0.5980861244019139
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6938775510204082,
+            "referral_flip": 0.1325,
+            "delta_auc": 0.09153555775126032,
+            "delta_sens_at_spec": 0.1694915254237288,
+            "spec_realized_shift": 0.9103139013452914
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.08,
+            "delta_auc": -0.006612449646575924,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.905829596412556
+          },
+          "ComBat_full": {
+            "retention": 0.5257731958762887,
+            "referral_flip": 0.155,
+            "delta_auc": 0.038281269793012496,
+            "delta_sens_at_spec": 0.25988700564971745,
+            "spec_realized_shift": 0.9820627802690582
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.335,
+            "delta_auc": 0.09406906336297516,
+            "delta_sens_at_spec": -0.11864406779661019,
+            "spec_realized_shift": 0.57847533632287
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.3575,
+            "delta_auc": 0.14994791666666663,
+            "delta_sens_at_spec": -0.18125000000000002,
+            "spec_realized_shift": 0.5083333333333333
+          },
+          "dr": {
+            "retention": 0.9791666666666667,
+            "referral_flip": 0.075,
+            "delta_auc": 0.040182291666666536,
+            "delta_sens_at_spec": 0.012499999999999956,
+            "spec_realized_shift": 0.8208333333333333
+          },
+          "ComBat_full": {
+            "retention": 0.6914893617021276,
+            "referral_flip": 0.1575,
+            "delta_auc": 0.08325520833333333,
+            "delta_sens_at_spec": 0.18125000000000002,
+            "spec_realized_shift": 0.8875
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.39,
+            "delta_auc": 0.10117187499999991,
+            "delta_sens_at_spec": -0.25,
+            "spec_realized_shift": 0.4708333333333333
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.8461538461538463,
+            "referral_flip": 0.205,
+            "delta_auc": 0.15067718639973282,
+            "delta_sens_at_spec": 0.08383233532934126,
+            "spec_realized_shift": 0.7467811158798283
+          },
+          "dr": {
+            "retention": 0.9506172839506174,
+            "referral_flip": 0.09,
+            "delta_auc": 0.00012849836807049542,
+            "delta_sens_at_spec": 0.0239520958083832,
+            "spec_realized_shift": 0.8798283261802575
+          },
+          "ComBat_full": {
+            "retention": 0.5368421052631579,
+            "referral_flip": 0.155,
+            "delta_auc": 0.08560561280871759,
+            "delta_sens_at_spec": 0.2634730538922156,
+            "spec_realized_shift": 0.9399141630901288
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.285,
+            "delta_auc": 0.11025159980468258,
+            "delta_sens_at_spec": -0.06586826347305386,
+            "spec_realized_shift": 0.6008583690987125
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.8879310344827586,
+            "referral_flip": 0.0975,
+            "delta_auc": 0.04854977920513859,
+            "delta_sens_at_spec": 0.06914893617021278,
+            "spec_realized_shift": 0.8632075471698113
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.0675,
+            "delta_auc": 0.014978924126856641,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8584905660377359
+          },
+          "ComBat_full": {
+            "retention": 0.5175438596491228,
+            "referral_flip": 0.185,
+            "delta_auc": 0.005419510236852831,
+            "delta_sens_at_spec": 0.29255319148936176,
+            "spec_realized_shift": 0.9716981132075472
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.135,
+            "delta_auc": 0.028753512645523727,
+            "delta_sens_at_spec": -0.06914893617021278,
+            "spec_realized_shift": 0.7405660377358491
+          }
+        }
+      ]
+    },
+    "harvard_gdp|cirrus_to_topcon": {
+      "source": "harvard_gdp",
+      "pair": "cirrus_to_topcon",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 0.9663461538461539,
+          "referral_flip": 0.2575,
+          "delta_auc": 0.15436562480118865,
+          "delta_sens_at_spec": 0.018324607329842924,
+          "spec_realized_shift": 0.7366771159874608
+        },
+        "dr": {
+          "retention": 0.9903766077542334,
+          "referral_flip": 0.10125,
+          "delta_auc": 0.005075578499807887,
+          "delta_sens_at_spec": 0.0058010492332525865,
+          "spec_realized_shift": 0.893489110707804
+        },
+        "ComBat_full": {
+          "retention": 0.5526076409945422,
+          "referral_flip": 0.18375,
+          "delta_auc": 0.07640692032137075,
+          "delta_sens_at_spec": 0.2582223567393058,
+          "spec_realized_shift": 0.9281340638092168
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.365,
+          "delta_auc": 0.1154688922690883,
+          "delta_sens_at_spec": -0.1535587639311044,
+          "spec_realized_shift": 0.5109571382533032
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.6078431372549019,
+            "referral_flip": 0.1725,
+            "delta_auc": 0.061234830635149895,
+            "delta_sens_at_spec": 0.22598870056497178,
+            "spec_realized_shift": 0.9506726457399103
+          },
+          "dr": {
+            "retention": 0.9574468085106382,
+            "referral_flip": 0.12,
+            "delta_auc": -0.0042562894276811924,
+            "delta_sens_at_spec": 0.02259887005649719,
+            "spec_realized_shift": 0.9237668161434978
+          },
+          "ComBat_full": {
+            "retention": 0.3942307692307692,
+            "referral_flip": 0.2175,
+            "delta_auc": 0.061868207038078604,
+            "delta_sens_at_spec": 0.35593220338983056,
+            "spec_realized_shift": 0.9730941704035875
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.2675,
+            "delta_auc": 0.07567581262192513,
+            "delta_sens_at_spec": -0.10734463276836159,
+            "spec_realized_shift": 0.6322869955156951
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.315,
+            "delta_auc": 0.16787253694581272,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.6551724137931034
+          },
+          "dr": {
+            "retention": 0.9906542056074766,
+            "referral_flip": 0.095,
+            "delta_auc": 0.01618944991789828,
+            "delta_sens_at_spec": 0.005952380952380931,
+            "spec_realized_shift": 0.8922413793103449
+          },
+          "ComBat_full": {
+            "retention": 0.5588235294117648,
+            "referral_flip": 0.1975,
+            "delta_auc": 0.11045258620689657,
+            "delta_sens_at_spec": 0.2678571428571428,
+            "spec_realized_shift": 0.9310344827586207
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3775,
+            "delta_auc": 0.13056752873563204,
+            "delta_sens_at_spec": -0.13690476190476197,
+            "spec_realized_shift": 0.5172413793103449
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.425,
+            "delta_auc": 0.19505050505050514,
+            "delta_sens_at_spec": -0.21666666666666673,
+            "spec_realized_shift": 0.4409090909090909
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1225,
+            "delta_auc": -0.030303030303030387,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.9
+          },
+          "ComBat_full": {
+            "retention": 0.9772727272727274,
+            "referral_flip": 0.1875,
+            "delta_auc": 0.06159090909090925,
+            "delta_sens_at_spec": 0.011111111111111072,
+            "spec_realized_shift": 0.8545454545454545
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.63,
+            "delta_auc": 0.12376262626262635,
+            "delta_sens_at_spec": -0.43888888888888894,
+            "spec_realized_shift": 0.15
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.325,
+            "delta_auc": 0.15887193898032914,
+            "delta_sens_at_spec": -0.08510638297872342,
+            "spec_realized_shift": 0.6037735849056604
+          },
+          "dr": {
+            "retention": 0.8712871287128713,
+            "referral_flip": 0.125,
+            "delta_auc": 0.035603171417101676,
+            "delta_sens_at_spec": 0.06914893617021278,
+            "spec_realized_shift": 0.8962264150943396
+          },
+          "ComBat_full": {
+            "retention": 0.5631067961165048,
+            "referral_flip": 0.18,
+            "delta_auc": 0.12156262545162577,
+            "delta_sens_at_spec": 0.23936170212765956,
+            "spec_realized_shift": 0.9009433962264151
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3725,
+            "delta_auc": 0.12590325170614214,
+            "delta_sens_at_spec": -0.17021276595744683,
+            "spec_realized_shift": 0.4811320754716981
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.335,
+            "delta_auc": 0.14985931062204816,
+            "delta_sens_at_spec": -0.05913978494623662,
+            "spec_realized_shift": 0.6214953271028038
+          },
+          "dr": {
+            "retention": 0.9081632653061226,
+            "referral_flip": 0.1025,
+            "delta_auc": 0.0387900713496131,
+            "delta_sens_at_spec": 0.048387096774193505,
+            "spec_realized_shift": 0.8878504672897196
+          },
+          "ComBat_full": {
+            "retention": 0.5238095238095238,
+            "referral_flip": 0.185,
+            "delta_auc": 0.0909456336046629,
+            "delta_sens_at_spec": 0.2688172043010753,
+            "spec_realized_shift": 0.9252336448598131
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3875,
+            "delta_auc": 0.10717515827555024,
+            "delta_sens_at_spec": -0.18279569892473113,
+            "spec_realized_shift": 0.5046728971962616
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9326923076923077,
+            "referral_flip": 0.2,
+            "delta_auc": 0.06423006588341384,
+            "delta_sens_at_spec": 0.03664921465968585,
+            "spec_realized_shift": 0.8181818181818182
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.095,
+            "delta_auc": -0.015381146822315395,
+            "delta_sens_at_spec": -0.031413612565445004,
+            "spec_realized_shift": 0.8947368421052632
+          },
+          "ComBat_full": {
+            "retention": 0.6666666666666667,
+            "referral_flip": 0.175,
+            "delta_auc": 0.04258623713018872,
+            "delta_sens_at_spec": 0.1832460732984293,
+            "spec_realized_shift": 0.9473684210526315
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3475,
+            "delta_auc": 0.0521806658483428,
+            "delta_sens_at_spec": -0.20418848167539272,
+            "spec_realized_shift": 0.49760765550239233
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.5612244897959184,
+            "referral_flip": 0.16,
+            "delta_auc": 0.10146689974918299,
+            "delta_sens_at_spec": 0.24293785310734461,
+            "spec_realized_shift": 0.9417040358744395
+          },
+          "dr": {
+            "retention": 0.9900990099009902,
+            "referral_flip": 0.1,
+            "delta_auc": -0.011046084467077,
+            "delta_sens_at_spec": 0.005649717514124242,
+            "spec_realized_shift": 0.9103139013452914
+          },
+          "ComBat_full": {
+            "retention": 0.5463917525773196,
+            "referral_flip": 0.175,
+            "delta_auc": 0.0491500088672695,
+            "delta_sens_at_spec": 0.24858757062146886,
+            "spec_realized_shift": 0.9641255605381166
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3575,
+            "delta_auc": 0.10146689974918277,
+            "delta_sens_at_spec": -0.10734463276836159,
+            "spec_realized_shift": 0.600896860986547
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.3375,
+            "delta_auc": 0.18559895833333329,
+            "delta_sens_at_spec": -0.025000000000000022,
+            "spec_realized_shift": 0.5958333333333333
+          },
+          "dr": {
+            "retention": 0.898989898989899,
+            "referral_flip": 0.0925,
+            "delta_auc": 0.03473958333333338,
+            "delta_sens_at_spec": 0.0625,
+            "spec_realized_shift": 0.8541666666666666
+          },
+          "ComBat_full": {
+            "retention": 0.6170212765957447,
+            "referral_flip": 0.18,
+            "delta_auc": 0.1252864583333333,
+            "delta_sens_at_spec": 0.22500000000000003,
+            "spec_realized_shift": 0.8791666666666667
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.4475,
+            "delta_auc": 0.1386197916666666,
+            "delta_sens_at_spec": -0.26250000000000007,
+            "spec_realized_shift": 0.4166666666666667
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6043956043956044,
+            "referral_flip": 0.2,
+            "delta_auc": 0.17812443781963982,
+            "delta_sens_at_spec": 0.21556886227544908,
+            "spec_realized_shift": 0.8326180257510729
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.115,
+            "delta_auc": 0.012258744313947245,
+            "delta_sens_at_spec": 0.0,
+            "spec_realized_shift": 0.8841201716738197
+          },
+          "ComBat_full": {
+            "retention": 0.5157894736842105,
+            "referral_flip": 0.1825,
+            "delta_auc": 0.1181413996042252,
+            "delta_sens_at_spec": 0.27544910179640725,
+            "spec_realized_shift": 0.9141630901287554
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.355,
+            "delta_auc": 0.1442779676698107,
+            "delta_sens_at_spec": -0.06586826347305386,
+            "spec_realized_shift": 0.5450643776824035
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.5517241379310345,
+            "referral_flip": 0.1575,
+            "delta_auc": 0.09040044158972316,
+            "delta_sens_at_spec": 0.2765957446808511,
+            "spec_realized_shift": 0.9245283018867925
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.0975,
+            "delta_auc": -0.0021075873143314716,
+            "delta_sens_at_spec": -0.010638297872340385,
+            "spec_realized_shift": 0.8915094339622641
+          },
+          "ComBat_full": {
+            "retention": 0.4736842105263158,
+            "referral_flip": 0.19,
+            "delta_auc": 0.05557507025291064,
+            "delta_sens_at_spec": 0.3191489361702128,
+            "spec_realized_shift": 0.9339622641509434
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.21,
+            "delta_auc": 0.07853271778402249,
+            "delta_sens_at_spec": -0.03191489361702127,
+            "spec_realized_shift": 0.6745283018867925
+          }
+        }
+      ]
+    },
+    "harvard_gdp|cirrus_to_rtvue": {
+      "source": "harvard_gdp",
+      "pair": "cirrus_to_rtvue",
+      "seeds": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ],
+      "median": {
+        "baseline": {
+          "retention": 0.9903846153846154,
+          "referral_flip": 0.255,
+          "delta_auc": 0.15038848048129533,
+          "delta_sens_at_spec": 0.002259411618050322,
+          "spec_realized_shift": 0.7293303101465706
+        },
+        "dr": {
+          "retention": 0.9623008849557522,
+          "referral_flip": 0.11624999999999999,
+          "delta_auc": 0.003371981432455484,
+          "delta_sens_at_spec": 0.021109502060822127,
+          "spec_realized_shift": 0.8913339382940109
+        },
+        "ComBat_full": {
+          "retention": 0.5805254140491147,
+          "referral_flip": 0.16625,
+          "delta_auc": 0.05753203195658729,
+          "delta_sens_at_spec": 0.24202127659574466,
+          "spec_realized_shift": 0.9397939174189729
+        },
+        "ComBat_loc": {
+          "retention": 1.0,
+          "referral_flip": 0.3725,
+          "delta_auc": 0.09314313989411221,
+          "delta_sens_at_spec": -0.19461473734823898,
+          "spec_realized_shift": 0.4624404866866514
+        }
+      },
+      "per_seed": [
+        {
+          "baseline": {
+            "retention": 0.6274509803921569,
+            "referral_flip": 0.155,
+            "delta_auc": 0.05201287020850742,
+            "delta_sens_at_spec": 0.21468926553672318,
+            "spec_realized_shift": 0.9596412556053812
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1375,
+            "delta_auc": -0.009525981100048098,
+            "delta_sens_at_spec": -0.011299435028248594,
+            "spec_realized_shift": 0.9147982062780269
+          },
+          "ComBat_full": {
+            "retention": 0.47115384615384615,
+            "referral_flip": 0.205,
+            "delta_auc": 0.03534240328342331,
+            "delta_sens_at_spec": 0.3107344632768362,
+            "spec_realized_shift": 0.9775784753363229
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3075,
+            "delta_auc": 0.04996073066301843,
+            "delta_sens_at_spec": -0.19774011299435035,
+            "spec_realized_shift": 0.5874439461883408
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.29,
+            "delta_auc": 0.16227935139573058,
+            "delta_sens_at_spec": -0.005952380952381042,
+            "spec_realized_shift": 0.6594827586206896
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.095,
+            "delta_auc": 0.02224445812807907,
+            "delta_sens_at_spec": -0.023809523809523836,
+            "spec_realized_shift": 0.8879310344827587
+          },
+          "ComBat_full": {
+            "retention": 0.5882352941176471,
+            "referral_flip": 0.1775,
+            "delta_auc": 0.0813834154351395,
+            "delta_sens_at_spec": 0.24999999999999994,
+            "spec_realized_shift": 0.9439655172413793
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.38,
+            "delta_auc": 0.10031814449917897,
+            "delta_sens_at_spec": -0.19047619047619058,
+            "spec_realized_shift": 0.4525862068965517
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.395,
+            "delta_auc": 0.18545454545454565,
+            "delta_sens_at_spec": -0.1833333333333334,
+            "spec_realized_shift": 0.4681818181818182
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.125,
+            "delta_auc": -0.02414141414141424,
+            "delta_sens_at_spec": -0.05555555555555558,
+            "spec_realized_shift": 0.8954545454545455
+          },
+          "ComBat_full": {
+            "retention": 0.9659090909090909,
+            "referral_flip": 0.1625,
+            "delta_auc": 0.04416666666666669,
+            "delta_sens_at_spec": 0.016666666666666663,
+            "spec_realized_shift": 0.8590909090909091
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.6275,
+            "delta_auc": 0.09989898989898993,
+            "delta_sens_at_spec": -0.45,
+            "spec_realized_shift": 0.16818181818181818
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.2925,
+            "delta_auc": 0.1514201124046567,
+            "delta_sens_at_spec": -0.06914893617021278,
+            "spec_realized_shift": 0.660377358490566
+          },
+          "dr": {
+            "retention": 0.8857142857142858,
+            "referral_flip": 0.1125,
+            "delta_auc": 0.028828783621035803,
+            "delta_sens_at_spec": 0.06382978723404248,
+            "spec_realized_shift": 0.910377358490566
+          },
+          "ComBat_full": {
+            "retention": 0.5728155339805825,
+            "referral_flip": 0.15,
+            "delta_auc": 0.09303492573263739,
+            "delta_sens_at_spec": 0.23404255319148937,
+            "spec_realized_shift": 0.9009433962264151
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.3625,
+            "delta_auc": 0.09732537133681252,
+            "delta_sens_at_spec": -0.1914893617021276,
+            "spec_realized_shift": 0.46226415094339623
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.3075,
+            "delta_auc": 0.14935684855793396,
+            "delta_sens_at_spec": -0.043010752688172116,
+            "spec_realized_shift": 0.616822429906542
+          },
+          "dr": {
+            "retention": 0.90625,
+            "referral_flip": 0.125,
+            "delta_auc": 0.03504672897196259,
+            "delta_sens_at_spec": 0.04838709677419356,
+            "spec_realized_shift": 0.8878504672897196
+          },
+          "ComBat_full": {
+            "retention": 0.5333333333333333,
+            "referral_flip": 0.1875,
+            "delta_auc": 0.0708973972465079,
+            "delta_sens_at_spec": 0.2634408602150538,
+            "spec_realized_shift": 0.9252336448598131
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.415,
+            "delta_auc": 0.08896090845141191,
+            "delta_sens_at_spec": -0.22043010752688164,
+            "spec_realized_shift": 0.46261682242990654
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.9807692307692307,
+            "referral_flip": 0.22,
+            "delta_auc": 0.0643553195220321,
+            "delta_sens_at_spec": 0.010471204188481686,
+            "spec_realized_shift": 0.8086124401913876
+          },
+          "dr": {
+            "retention": 0.96,
+            "referral_flip": 0.1175,
+            "delta_auc": 0.00355720333675702,
+            "delta_sens_at_spec": 0.020942408376963373,
+            "spec_realized_shift": 0.8947368421052632
+          },
+          "ComBat_full": {
+            "retention": 0.7142857142857144,
+            "referral_flip": 0.1525,
+            "delta_auc": 0.018612690698665002,
+            "delta_sens_at_spec": 0.15706806282722507,
+            "spec_realized_shift": 0.9569377990430622
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.355,
+            "delta_auc": 0.03196472857536503,
+            "delta_sens_at_spec": -0.25130890052356025,
+            "spec_realized_shift": 0.45933014354066987
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.5612244897959184,
+            "referral_flip": 0.135,
+            "delta_auc": 0.08917939753236559,
+            "delta_sens_at_spec": 0.24293785310734461,
+            "spec_realized_shift": 0.9461883408071748
+          },
+          "dr": {
+            "retention": 0.9099099099099098,
+            "referral_flip": 0.115,
+            "delta_auc": -0.004382964708266823,
+            "delta_sens_at_spec": 0.05649717514124297,
+            "spec_realized_shift": 0.8968609865470852
+          },
+          "ComBat_full": {
+            "retention": 0.5979381443298969,
+            "referral_flip": 0.1375,
+            "delta_auc": 0.03131412936079647,
+            "delta_sens_at_spec": 0.22033898305084743,
+            "spec_realized_shift": 0.9641255605381166
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.365,
+            "delta_auc": 0.07995743710572312,
+            "delta_sens_at_spec": -0.15819209039548032,
+            "spec_realized_shift": 0.5605381165919282
+          }
+        },
+        {
+          "baseline": {
+            "retention": 1.0,
+            "referral_flip": 0.31,
+            "delta_auc": 0.17695312500000004,
+            "delta_sens_at_spec": -0.03749999999999998,
+            "spec_realized_shift": 0.6208333333333333
+          },
+          "dr": {
+            "retention": 0.8842105263157896,
+            "referral_flip": 0.1175,
+            "delta_auc": 0.03833333333333333,
+            "delta_sens_at_spec": 0.06874999999999998,
+            "spec_realized_shift": 0.8291666666666667
+          },
+          "ComBat_full": {
+            "retention": 0.6914893617021276,
+            "referral_flip": 0.17,
+            "delta_auc": 0.09526041666666663,
+            "delta_sens_at_spec": 0.18125000000000002,
+            "spec_realized_shift": 0.8833333333333333
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.465,
+            "delta_auc": 0.10427083333333331,
+            "delta_sens_at_spec": -0.30000000000000004,
+            "spec_realized_shift": 0.37916666666666665
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.6703296703296704,
+            "referral_flip": 0.2025,
+            "delta_auc": 0.17850993292385198,
+            "delta_sens_at_spec": 0.17964071856287422,
+            "spec_realized_shift": 0.7982832618025751
+          },
+          "dr": {
+            "retention": 1.0,
+            "referral_flip": 0.1075,
+            "delta_auc": 0.0031867595281539485,
+            "delta_sens_at_spec": -0.0059880239520958,
+            "spec_realized_shift": 0.8841201716738197
+          },
+          "ComBat_full": {
+            "retention": 0.5473684210526315,
+            "referral_flip": 0.1625,
+            "delta_auc": 0.09087404589961723,
+            "delta_sens_at_spec": 0.2574850299401198,
+            "spec_realized_shift": 0.9356223175965666
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.38,
+            "delta_auc": 0.11773020482639884,
+            "delta_sens_at_spec": -0.14371257485029942,
+            "spec_realized_shift": 0.4892703862660944
+          }
+        },
+        {
+          "baseline": {
+            "retention": 0.5948275862068966,
+            "referral_flip": 0.14,
+            "delta_auc": 0.08161882778000806,
+            "delta_sens_at_spec": 0.25,
+            "spec_realized_shift": 0.9339622641509434
+          },
+          "dr": {
+            "retention": 0.9646017699115044,
+            "referral_flip": 0.115,
+            "delta_auc": 0.001781413087113659,
+            "delta_sens_at_spec": 0.021276595744680882,
+            "spec_realized_shift": 0.8773584905660378
+          },
+          "ComBat_full": {
+            "retention": 0.5526315789473684,
+            "referral_flip": 0.1775,
+            "delta_auc": 0.025240867121637867,
+            "delta_sens_at_spec": 0.2712765957446809,
+            "spec_realized_shift": 0.9575471698113207
+          },
+          "ComBat_loc": {
+            "retention": 1.0,
+            "referral_flip": 0.2025,
+            "delta_auc": 0.04370734644720986,
+            "delta_sens_at_spec": -0.10638297872340419,
+            "spec_realized_shift": 0.6226415094339622
+          }
+        }
+      ]
+    }
+  },
+  "verdict": {
+    "n_seeds": 10,
+    "gdp_full_combat_retention_perseed_range": [
+      0.3942307692307692,
+      0.9886363636363636
+    ],
+    "gdp_full_combat_retention_frac_below_0.6": 0.7,
+    "gdp_loc_combat_retention_perseed_range": [
+      1.0,
+      1.0
+    ],
+    "gdp_loc_combat_spec_realized_median": 0.5301724137931034,
+    "gdp_loc_combat_referral_flip_median": 0.35624999999999996,
+    "gdp_dr_retention_perseed_range": [
+      0.8712871287128713,
+      1.0
+    ],
+    "gf_full_combat_retention_perseed_min": 0.9056603773584906,
+    "claim": "full location+scale ComBat drops GDP detection retention but the per-seed range shows how seed-fragile it is; a known biological-variance-compression pitfall (Nygaard 2016) on a 64\u00b2 non-NN reader \u2014 NOT a load-bearing device finding. Location-only holds retention only by inflating false positives (spec/flip medians here); domain-randomisation (dr) is steadier. Needs full-res confirmation."
+  }
+}

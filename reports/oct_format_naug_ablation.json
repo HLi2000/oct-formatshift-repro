@@ -1,0 +1,51 @@
+{
+  "meta": {
+    "source": "harvard_gf",
+    "limit": 800,
+    "seed": 0,
+    "n_test": 320,
+    "axis": "map_offset"
+  },
+  "baseline_mae": 19.868717623488493,
+  "combat_mae": 13.642352829783583,
+  "combat_tier": 2,
+  "rows": [
+    {
+      "n_aug": 3,
+      "dr_mae": 22.873457814874723,
+      "dr_tier": 0,
+      "dr_tolerance_score": 0.32295198862468993,
+      "dr_retention": 0.9240506329113923,
+      "vs_baseline": 3.0047401913862295,
+      "vs_combat": 9.23110498509114
+    },
+    {
+      "n_aug": 6,
+      "dr_mae": 20.217813297981184,
+      "dr_tier": 0,
+      "dr_tolerance_score": 0.41384950019068023,
+      "dr_retention": 0.9113924050632911,
+      "vs_baseline": 0.3490956744926912,
+      "vs_combat": 6.575460468197601
+    },
+    {
+      "n_aug": 12,
+      "dr_mae": 16.534926910862627,
+      "dr_tier": 1,
+      "dr_tolerance_score": 0.5347369375247254,
+      "dr_retention": 0.8531746031746031,
+      "vs_baseline": -3.3337907126258663,
+      "vs_combat": 2.8925740810790437
+    },
+    {
+      "n_aug": 24,
+      "dr_mae": 14.854872329020978,
+      "dr_tier": 2,
+      "dr_tolerance_score": 0.5877511258067908,
+      "dr_retention": 0.859437751004016,
+      "vs_baseline": -5.013845294467515,
+      "vs_combat": 1.2125194992373949
+    }
+  ],
+  "verdict": "device-blind DR recovery improves with n_aug and certifies only at large n_aug, never beating the direct per-device estimator (ComBat) \u2014 a method-efficiency gap, not an inability to harmonise."
+}

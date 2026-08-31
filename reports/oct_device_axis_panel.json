@@ -1,0 +1,982 @@
+{
+  "meta": {
+    "source": "harvard_gdp",
+    "res_fullres": 224,
+    "res_floor": [
+      64,
+      64
+    ],
+    "n_train": 550,
+    "n_val": 150,
+    "n_test": 300,
+    "pair": "cirrus_to_spectralis",
+    "levels": [
+      1.0
+    ],
+    "headline_level": 1.0,
+    "published_bias_um": 1.94,
+    "level_induced_global_um": {
+      "1.0": 2.0989604956797305
+    },
+    "test_glaucoma_rate": 0.46,
+    "cnn_clean_test_auc": {
+      "fullres_cnn": 0.8512256217570227,
+      "fullres_cnn_dr": 0.8429504383610663
+    },
+    "cnn_params": 97905,
+    "epochs": 35,
+    "primary_metric": "paired clean->shifted degradation on the structural-LoA device axis",
+    "note": "full-res CNN (native res, direct glaucoma proba) vs the 64\u00b2 Ridge floor + harmonizer-treatments, ALL on the SAME per-eye device shifts (shared seed); each reader on its native representation under the same calibrated perturbation. \u26a0 retention is sens-only (read WITH spec_realized_shift/flip/\u0394AUC). Labels VF-derived (non-circular). Device axis = calibrated LoA."
+  },
+  "magnitude_match": {
+    "1.0": {
+      "sectors": [
+        "global",
+        "s",
+        "n",
+        "i",
+        "t"
+      ],
+      "mean_delta_um": [
+        2.0989604956797305,
+        2.128779402311602,
+        1.9649037209010578,
+        2.3618857322206126,
+        2.0142649352719886
+      ],
+      "sd_delta_um": [
+        3.8251270140642193,
+        4.547959434806195,
+        3.416849987010502,
+        4.411039725608921,
+        3.401704637756063
+      ],
+      "abs_systematic_um": 2.113758857276998,
+      "global_systematic_um": 2.0989604956797305
+    }
+  },
+  "panel": {
+    "fullres_cnn": {
+      "model": "fullres_cnn",
+      "representation": "map-fullres",
+      "adaptation": "supervised",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "fullres_cnn",
+          "representation": "map-fullres",
+          "adaptation": "supervised",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.03,
+          "auc_clean": 0.8512256217570227,
+          "auc_shift": 0.8500178922884237,
+          "delta_auc": 0.0012077294685989282,
+          "sens_at_spec_clean": 0.7028985507246377,
+          "sens_at_spec_shift": 0.6739130434782609,
+          "delta_sens_at_spec": 0.02898550724637683,
+          "spec_realized_shift": 0.8950617283950617,
+          "retention": 0.9587628865979381,
+          "ece_clean": 0.13132611284653348,
+          "ece_shift": 0.12651367838184036,
+          "delta_ece": -0.004812434464693122,
+          "op_threshold": 0.6729500949382783,
+          "ci": {
+            "auc_clean": [
+              0.800889850141548,
+              0.8938131667011292
+            ],
+            "auc_shift": [
+              0.7989185070603139,
+              0.8934708515525195
+            ],
+            "delta_auc": [
+              -0.006356854414101829,
+              0.00883377094370623
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.06060606060606055
+            ],
+            "referral_flip": [
+              0.013333333333333334,
+              0.05
+            ],
+            "retention": [
+              0.9139551192145863,
+              1.0
+            ],
+            "delta_ece": [
+              -0.031512684601048654,
+              0.007343894783407372
+            ]
+          }
+        }
+      }
+    },
+    "fullres_cnn_dr": {
+      "model": "fullres_cnn_dr",
+      "representation": "map-fullres",
+      "adaptation": "domain-rand",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "fullres_cnn_dr",
+          "representation": "map-fullres",
+          "adaptation": "domain-rand",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.02,
+          "auc_clean": 0.8429504383610663,
+          "auc_shift": 0.8450080515297906,
+          "delta_auc": -0.002057613168724326,
+          "sens_at_spec_clean": 0.6956521739130435,
+          "sens_at_spec_shift": 0.7028985507246377,
+          "delta_sens_at_spec": -0.007246376811594235,
+          "spec_realized_shift": 0.8827160493827161,
+          "retention": 1.0,
+          "ece_clean": 0.1468218389650186,
+          "ece_shift": 0.15058225462834038,
+          "delta_ece": 0.0037604156633217756,
+          "op_threshold": 0.6950725615024567,
+          "ci": {
+            "auc_clean": [
+              0.7941138028610699,
+              0.8873805215419501
+            ],
+            "auc_shift": [
+              0.7959929398148149,
+              0.8878545131397373
+            ],
+            "delta_auc": [
+              -0.00599439608601417,
+              0.0019138555348992756
+            ],
+            "delta_sens_at_spec": [
+              -0.034189497716894966,
+              0.015151515151515138
+            ],
+            "referral_flip": [
+              0.006666666666666667,
+              0.03666666666666667
+            ],
+            "retention": [
+              0.9780219780219781,
+              1.0
+            ],
+            "delta_ece": [
+              -0.009195124410092839,
+              0.00761981462438901
+            ]
+          }
+        }
+      }
+    },
+    "ridge_baseline": {
+      "model": "ridge_baseline",
+      "representation": "map",
+      "adaptation": "supervised",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "ridge_baseline",
+          "representation": "map",
+          "adaptation": "supervised",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.06666666666666667,
+          "auc_clean": 0.8130703166935052,
+          "auc_shift": 0.7871264984791555,
+          "delta_auc": 0.025943818214349657,
+          "sens_at_spec_clean": 0.5797101449275363,
+          "sens_at_spec_shift": 0.5289855072463768,
+          "delta_sens_at_spec": 0.050724637681159424,
+          "spec_realized_shift": 0.9012345679012346,
+          "retention": 0.9125,
+          "ece_clean": 0.17016238511545104,
+          "ece_shift": 0.18643801734818208,
+          "delta_ece": 0.01627563223273104,
+          "op_threshold": 0.3510287312810332,
+          "ci": {
+            "auc_clean": [
+              0.7599555324626314,
+              0.8589259171101391
+            ],
+            "auc_shift": [
+              0.7281368266101302,
+              0.8372892992005938
+            ],
+            "delta_auc": [
+              0.008745193175873425,
+              0.044217186307323096
+            ],
+            "delta_sens_at_spec": [
+              -0.007300611850579638,
+              0.11540697674418605
+            ],
+            "referral_flip": [
+              0.04,
+              0.09333333333333334
+            ],
+            "retention": [
+              0.8068090175953079,
+              1.0
+            ],
+            "delta_ece": [
+              -0.0024242744602317877,
+              0.038702413243794864
+            ]
+          }
+        }
+      }
+    },
+    "ridge_dr": {
+      "model": "ridge_dr",
+      "representation": "map",
+      "adaptation": "domain-rand",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "ridge_dr",
+          "representation": "map",
+          "adaptation": "domain-rand",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.06333333333333334,
+          "auc_clean": 0.8021112900339953,
+          "auc_shift": 0.7950885668276972,
+          "delta_auc": 0.007022723206298043,
+          "sens_at_spec_clean": 0.6086956521739131,
+          "sens_at_spec_shift": 0.5869565217391305,
+          "delta_sens_at_spec": 0.021739130434782594,
+          "spec_realized_shift": 0.9197530864197531,
+          "retention": 0.9642857142857143,
+          "ece_clean": 0.1675162902620615,
+          "ece_shift": 0.17359063998136418,
+          "delta_ece": 0.00607434971930268,
+          "op_threshold": 0.3341355668121936,
+          "ci": {
+            "auc_clean": [
+              0.7493598185301467,
+              0.8504283910533912
+            ],
+            "auc_shift": [
+              0.7378860661990064,
+              0.8447257040473422
+            ],
+            "delta_auc": [
+              -0.0051221568035425625,
+              0.020414393532877495
+            ],
+            "delta_sens_at_spec": [
+              -0.024802484536618354,
+              0.06923611111111108
+            ],
+            "referral_flip": [
+              0.04,
+              0.09333333333333334
+            ],
+            "retention": [
+              0.8915662650602411,
+              1.0
+            ],
+            "delta_ece": [
+              -0.01697199925798823,
+              0.029692002759476133
+            ]
+          }
+        }
+      }
+    },
+    "ComBat_full": {
+      "model": "ComBat_full",
+      "representation": "map",
+      "adaptation": "harmonizer/loc+scale",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "ComBat_full",
+          "representation": "map",
+          "adaptation": "harmonizer/loc+scale",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.08,
+          "auc_clean": 0.8045267489711935,
+          "auc_shift": 0.7837716943997136,
+          "delta_auc": 0.02075505457147986,
+          "sens_at_spec_clean": 0.572463768115942,
+          "sens_at_spec_shift": 0.5797101449275363,
+          "delta_sens_at_spec": -0.007246376811594235,
+          "spec_realized_shift": 0.8827160493827161,
+          "retention": 1.0,
+          "ece_clean": 0.15796221792209336,
+          "ece_shift": 0.1665383109634406,
+          "delta_ece": 0.008576093041347238,
+          "op_threshold": 0.3765055012183351,
+          "ci": {
+            "auc_clean": [
+              0.7487396728041517,
+              0.8517939690174169
+            ],
+            "auc_shift": [
+              0.7243106607397743,
+              0.8325728190981232
+            ],
+            "delta_auc": [
+              0.003908604167218496,
+              0.03851907206119179
+            ],
+            "delta_sens_at_spec": [
+              -0.06061117936117942,
+              0.04575288130519378
+            ],
+            "referral_flip": [
+              0.05,
+              0.11333333333333333
+            ],
+            "retention": [
+              0.9220522898154476,
+              1.0
+            ],
+            "delta_ece": [
+              -0.01219536414617202,
+              0.04043299280494013
+            ]
+          }
+        }
+      }
+    },
+    "Denoise": {
+      "model": "Denoise",
+      "representation": "map",
+      "adaptation": "harmonizer/denoise",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "Denoise",
+          "representation": "map",
+          "adaptation": "harmonizer/denoise",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.09,
+          "auc_clean": 0.7866791912685632,
+          "auc_shift": 0.7684290570764,
+          "delta_auc": 0.01825013419216326,
+          "sens_at_spec_clean": 0.5579710144927537,
+          "sens_at_spec_shift": 0.5217391304347826,
+          "delta_sens_at_spec": 0.036231884057971064,
+          "spec_realized_shift": 0.9074074074074074,
+          "retention": 0.9350649350649349,
+          "ece_clean": 0.1792062202953616,
+          "ece_shift": 0.19919927458934492,
+          "delta_ece": 0.01999305429398332,
+          "op_threshold": 0.3772120995203736,
+          "ci": {
+            "auc_clean": [
+              0.7285191809497911,
+              0.8370282030075981
+            ],
+            "auc_shift": [
+              0.7113266885102981,
+              0.8189120520353904
+            ],
+            "delta_auc": [
+              -5.591340132401716e-06,
+              0.038125608766233735
+            ],
+            "delta_sens_at_spec": [
+              -0.014498081841432179,
+              0.08555351222544547
+            ],
+            "referral_flip": [
+              0.06,
+              0.12333333333333334
+            ],
+            "retention": [
+              0.8492847234263915,
+              1.0
+            ],
+            "delta_ece": [
+              -0.001245112443315753,
+              0.04911400643296337
+            ]
+          }
+        }
+      }
+    },
+    "AffineRefit": {
+      "model": "AffineRefit",
+      "representation": "map",
+      "adaptation": "harmonizer/device-aware",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "AffineRefit",
+          "representation": "map",
+          "adaptation": "harmonizer/device-aware",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.06333333333333334,
+          "auc_clean": 0.8129808552513867,
+          "auc_shift": 0.7880211129003399,
+          "delta_auc": 0.02495974235104681,
+          "sens_at_spec_clean": 0.5942028985507246,
+          "sens_at_spec_shift": 0.5434782608695652,
+          "delta_sens_at_spec": 0.050724637681159424,
+          "spec_realized_shift": 0.8950617283950617,
+          "retention": 0.9146341463414634,
+          "ece_clean": 0.14630191578229026,
+          "ece_shift": 0.1688327097590325,
+          "delta_ece": 0.022530793976742236,
+          "op_threshold": 0.39076172483266175,
+          "ci": {
+            "auc_clean": [
+              0.7600587630824497,
+              0.8600001182669298
+            ],
+            "auc_shift": [
+              0.729340254603881,
+              0.8382619900694926
+            ],
+            "delta_auc": [
+              0.00728380952380964,
+              0.04296807021642283
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.10769230769230764
+            ],
+            "referral_flip": [
+              0.03666666666666667,
+              0.09333333333333334
+            ],
+            "retention": [
+              0.8227509041591321,
+              1.0
+            ],
+            "delta_ece": [
+              -0.0019176423975472777,
+              0.049074600865180666
+            ]
+          }
+        }
+      }
+    },
+    "constant": {
+      "model": "constant",
+      "representation": "map",
+      "adaptation": "degenerate",
+      "pair": "cirrus_to_spectralis",
+      "spec_target": 0.9,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "constant",
+          "representation": "map",
+          "adaptation": "degenerate",
+          "spec_target": 0.9,
+          "n": 300,
+          "n_pos": 138,
+          "n_neg": 162,
+          "referral_flip": 0.0,
+          "auc_clean": 0.5,
+          "auc_shift": 0.5,
+          "delta_auc": 0.0,
+          "sens_at_spec_clean": 0.0,
+          "sens_at_spec_shift": 0.0,
+          "delta_sens_at_spec": 0.0,
+          "spec_realized_shift": 1.0,
+          "retention": NaN,
+          "ece_clean": 0.4398576236425541,
+          "ece_shift": 0.4398576236425541,
+          "delta_ece": 0.0,
+          "op_threshold": 0.020142376357445913,
+          "ci": {
+            "auc_clean": [
+              0.5,
+              0.5
+            ],
+            "auc_shift": [
+              0.5,
+              0.5
+            ],
+            "delta_auc": [
+              0.0,
+              0.0
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.0
+            ],
+            "referral_flip": [
+              0.0,
+              0.0
+            ],
+            "delta_ece": [
+              0.0,
+              0.0
+            ]
+          }
+        }
+      }
+    }
+  },
+  "headline_board": [
+    {
+      "model": "fullres_cnn_dr",
+      "representation": "map-fullres",
+      "adaptation": "domain-rand",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.02,
+      "auc_clean": 0.8429504383610663,
+      "auc_shift": 0.8450080515297906,
+      "delta_auc": -0.002057613168724326,
+      "sens_at_spec_clean": 0.6956521739130435,
+      "sens_at_spec_shift": 0.7028985507246377,
+      "delta_sens_at_spec": -0.007246376811594235,
+      "spec_realized_shift": 0.8827160493827161,
+      "retention": 1.0,
+      "ece_clean": 0.1468218389650186,
+      "ece_shift": 0.15058225462834038,
+      "delta_ece": 0.0037604156633217756,
+      "op_threshold": 0.6950725615024567,
+      "ci": {
+        "auc_clean": [
+          0.7941138028610699,
+          0.8873805215419501
+        ],
+        "auc_shift": [
+          0.7959929398148149,
+          0.8878545131397373
+        ],
+        "delta_auc": [
+          -0.00599439608601417,
+          0.0019138555348992756
+        ],
+        "delta_sens_at_spec": [
+          -0.034189497716894966,
+          0.015151515151515138
+        ],
+        "referral_flip": [
+          0.006666666666666667,
+          0.03666666666666667
+        ],
+        "retention": [
+          0.9780219780219781,
+          1.0
+        ],
+        "delta_ece": [
+          -0.009195124410092839,
+          0.00761981462438901
+        ]
+      }
+    },
+    {
+      "model": "fullres_cnn",
+      "representation": "map-fullres",
+      "adaptation": "supervised",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.03,
+      "auc_clean": 0.8512256217570227,
+      "auc_shift": 0.8500178922884237,
+      "delta_auc": 0.0012077294685989282,
+      "sens_at_spec_clean": 0.7028985507246377,
+      "sens_at_spec_shift": 0.6739130434782609,
+      "delta_sens_at_spec": 0.02898550724637683,
+      "spec_realized_shift": 0.8950617283950617,
+      "retention": 0.9587628865979381,
+      "ece_clean": 0.13132611284653348,
+      "ece_shift": 0.12651367838184036,
+      "delta_ece": -0.004812434464693122,
+      "op_threshold": 0.6729500949382783,
+      "ci": {
+        "auc_clean": [
+          0.800889850141548,
+          0.8938131667011292
+        ],
+        "auc_shift": [
+          0.7989185070603139,
+          0.8934708515525195
+        ],
+        "delta_auc": [
+          -0.006356854414101829,
+          0.00883377094370623
+        ],
+        "delta_sens_at_spec": [
+          0.0,
+          0.06060606060606055
+        ],
+        "referral_flip": [
+          0.013333333333333334,
+          0.05
+        ],
+        "retention": [
+          0.9139551192145863,
+          1.0
+        ],
+        "delta_ece": [
+          -0.031512684601048654,
+          0.007343894783407372
+        ]
+      }
+    },
+    {
+      "model": "ridge_dr",
+      "representation": "map",
+      "adaptation": "domain-rand",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.06333333333333334,
+      "auc_clean": 0.8021112900339953,
+      "auc_shift": 0.7950885668276972,
+      "delta_auc": 0.007022723206298043,
+      "sens_at_spec_clean": 0.6086956521739131,
+      "sens_at_spec_shift": 0.5869565217391305,
+      "delta_sens_at_spec": 0.021739130434782594,
+      "spec_realized_shift": 0.9197530864197531,
+      "retention": 0.9642857142857143,
+      "ece_clean": 0.1675162902620615,
+      "ece_shift": 0.17359063998136418,
+      "delta_ece": 0.00607434971930268,
+      "op_threshold": 0.3341355668121936,
+      "ci": {
+        "auc_clean": [
+          0.7493598185301467,
+          0.8504283910533912
+        ],
+        "auc_shift": [
+          0.7378860661990064,
+          0.8447257040473422
+        ],
+        "delta_auc": [
+          -0.0051221568035425625,
+          0.020414393532877495
+        ],
+        "delta_sens_at_spec": [
+          -0.024802484536618354,
+          0.06923611111111108
+        ],
+        "referral_flip": [
+          0.04,
+          0.09333333333333334
+        ],
+        "retention": [
+          0.8915662650602411,
+          1.0
+        ],
+        "delta_ece": [
+          -0.01697199925798823,
+          0.029692002759476133
+        ]
+      }
+    },
+    {
+      "model": "AffineRefit",
+      "representation": "map",
+      "adaptation": "harmonizer/device-aware",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.06333333333333334,
+      "auc_clean": 0.8129808552513867,
+      "auc_shift": 0.7880211129003399,
+      "delta_auc": 0.02495974235104681,
+      "sens_at_spec_clean": 0.5942028985507246,
+      "sens_at_spec_shift": 0.5434782608695652,
+      "delta_sens_at_spec": 0.050724637681159424,
+      "spec_realized_shift": 0.8950617283950617,
+      "retention": 0.9146341463414634,
+      "ece_clean": 0.14630191578229026,
+      "ece_shift": 0.1688327097590325,
+      "delta_ece": 0.022530793976742236,
+      "op_threshold": 0.39076172483266175,
+      "ci": {
+        "auc_clean": [
+          0.7600587630824497,
+          0.8600001182669298
+        ],
+        "auc_shift": [
+          0.729340254603881,
+          0.8382619900694926
+        ],
+        "delta_auc": [
+          0.00728380952380964,
+          0.04296807021642283
+        ],
+        "delta_sens_at_spec": [
+          0.0,
+          0.10769230769230764
+        ],
+        "referral_flip": [
+          0.03666666666666667,
+          0.09333333333333334
+        ],
+        "retention": [
+          0.8227509041591321,
+          1.0
+        ],
+        "delta_ece": [
+          -0.0019176423975472777,
+          0.049074600865180666
+        ]
+      }
+    },
+    {
+      "model": "ridge_baseline",
+      "representation": "map",
+      "adaptation": "supervised",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.06666666666666667,
+      "auc_clean": 0.8130703166935052,
+      "auc_shift": 0.7871264984791555,
+      "delta_auc": 0.025943818214349657,
+      "sens_at_spec_clean": 0.5797101449275363,
+      "sens_at_spec_shift": 0.5289855072463768,
+      "delta_sens_at_spec": 0.050724637681159424,
+      "spec_realized_shift": 0.9012345679012346,
+      "retention": 0.9125,
+      "ece_clean": 0.17016238511545104,
+      "ece_shift": 0.18643801734818208,
+      "delta_ece": 0.01627563223273104,
+      "op_threshold": 0.3510287312810332,
+      "ci": {
+        "auc_clean": [
+          0.7599555324626314,
+          0.8589259171101391
+        ],
+        "auc_shift": [
+          0.7281368266101302,
+          0.8372892992005938
+        ],
+        "delta_auc": [
+          0.008745193175873425,
+          0.044217186307323096
+        ],
+        "delta_sens_at_spec": [
+          -0.007300611850579638,
+          0.11540697674418605
+        ],
+        "referral_flip": [
+          0.04,
+          0.09333333333333334
+        ],
+        "retention": [
+          0.8068090175953079,
+          1.0
+        ],
+        "delta_ece": [
+          -0.0024242744602317877,
+          0.038702413243794864
+        ]
+      }
+    },
+    {
+      "model": "ComBat_full",
+      "representation": "map",
+      "adaptation": "harmonizer/loc+scale",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.08,
+      "auc_clean": 0.8045267489711935,
+      "auc_shift": 0.7837716943997136,
+      "delta_auc": 0.02075505457147986,
+      "sens_at_spec_clean": 0.572463768115942,
+      "sens_at_spec_shift": 0.5797101449275363,
+      "delta_sens_at_spec": -0.007246376811594235,
+      "spec_realized_shift": 0.8827160493827161,
+      "retention": 1.0,
+      "ece_clean": 0.15796221792209336,
+      "ece_shift": 0.1665383109634406,
+      "delta_ece": 0.008576093041347238,
+      "op_threshold": 0.3765055012183351,
+      "ci": {
+        "auc_clean": [
+          0.7487396728041517,
+          0.8517939690174169
+        ],
+        "auc_shift": [
+          0.7243106607397743,
+          0.8325728190981232
+        ],
+        "delta_auc": [
+          0.003908604167218496,
+          0.03851907206119179
+        ],
+        "delta_sens_at_spec": [
+          -0.06061117936117942,
+          0.04575288130519378
+        ],
+        "referral_flip": [
+          0.05,
+          0.11333333333333333
+        ],
+        "retention": [
+          0.9220522898154476,
+          1.0
+        ],
+        "delta_ece": [
+          -0.01219536414617202,
+          0.04043299280494013
+        ]
+      }
+    },
+    {
+      "model": "Denoise",
+      "representation": "map",
+      "adaptation": "harmonizer/denoise",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.09,
+      "auc_clean": 0.7866791912685632,
+      "auc_shift": 0.7684290570764,
+      "delta_auc": 0.01825013419216326,
+      "sens_at_spec_clean": 0.5579710144927537,
+      "sens_at_spec_shift": 0.5217391304347826,
+      "delta_sens_at_spec": 0.036231884057971064,
+      "spec_realized_shift": 0.9074074074074074,
+      "retention": 0.9350649350649349,
+      "ece_clean": 0.1792062202953616,
+      "ece_shift": 0.19919927458934492,
+      "delta_ece": 0.01999305429398332,
+      "op_threshold": 0.3772120995203736,
+      "ci": {
+        "auc_clean": [
+          0.7285191809497911,
+          0.8370282030075981
+        ],
+        "auc_shift": [
+          0.7113266885102981,
+          0.8189120520353904
+        ],
+        "delta_auc": [
+          -5.591340132401716e-06,
+          0.038125608766233735
+        ],
+        "delta_sens_at_spec": [
+          -0.014498081841432179,
+          0.08555351222544547
+        ],
+        "referral_flip": [
+          0.06,
+          0.12333333333333334
+        ],
+        "retention": [
+          0.8492847234263915,
+          1.0
+        ],
+        "delta_ece": [
+          -0.001245112443315753,
+          0.04911400643296337
+        ]
+      }
+    },
+    {
+      "model": "constant",
+      "representation": "map",
+      "adaptation": "degenerate",
+      "spec_target": 0.9,
+      "n": 300,
+      "n_pos": 138,
+      "n_neg": 162,
+      "referral_flip": 0.0,
+      "auc_clean": 0.5,
+      "auc_shift": 0.5,
+      "delta_auc": 0.0,
+      "sens_at_spec_clean": 0.0,
+      "sens_at_spec_shift": 0.0,
+      "delta_sens_at_spec": 0.0,
+      "spec_realized_shift": 1.0,
+      "retention": NaN,
+      "ece_clean": 0.4398576236425541,
+      "ece_shift": 0.4398576236425541,
+      "delta_ece": 0.0,
+      "op_threshold": 0.020142376357445913,
+      "ci": {
+        "auc_clean": [
+          0.5,
+          0.5
+        ],
+        "auc_shift": [
+          0.5,
+          0.5
+        ],
+        "delta_auc": [
+          0.0,
+          0.0
+        ],
+        "delta_sens_at_spec": [
+          0.0,
+          0.0
+        ],
+        "referral_flip": [
+          0.0,
+          0.0
+        ],
+        "delta_ece": [
+          0.0,
+          0.0
+        ]
+      }
+    }
+  ]
+}

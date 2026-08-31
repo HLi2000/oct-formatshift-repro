@@ -1,0 +1,33 @@
+{
+  "meta": {
+    "axis": "real_cross_vendor_corroboration",
+    "is_benchmark": false,
+    "ranked": false,
+    "reference": "spectralis",
+    "vendors": [
+      "spectralis",
+      "topcon"
+    ],
+    "segmenter": "Eyened/OCT-ONH (vendor-neutral, source held constant)",
+    "primary_read": "scale-invariant SHAPE agreement ONLY \u2014 NOT a model-benchmark (different raw image types: Spectralis en-face thickness vs Topcon raw B-scan; different cohorts; GOALS unlabeled; \u00b5m scale uncertain \u2192 any magnitude/referral/detection read is non-identified, \u00a70). Corroborates same-anatomy; models are BENCHMARKED on the synthetic device axis + real single-vendor GLEAM detection (the appearance panel); a real cross-vendor DETECTION benchmark needs same-eye cross-device data (AI-READI)."
+  },
+  "result": {
+    "reference": "spectralis",
+    "per_vendor": {
+      "spectralis": {
+        "n": 60,
+        "global_px": 45.81378808243726,
+        "shape_agreement_vs_ref": 1.0000000000000002,
+        "per_eye_shape_agreement_median": 0.5370603553605995
+      },
+      "topcon": {
+        "n": 60,
+        "global_px": 18.617031490015357,
+        "shape_agreement_vs_ref": 0.9282324875527922,
+        "per_eye_shape_agreement_median": 0.4263696418630685
+      }
+    },
+    "min_shape_agreement": 0.9282324875527922,
+    "note": "scale-invariant SHAPE agreement ONLY (the double-hump aligns \u2192 the vendors measure the same anatomy, segmenter held constant). \u26a0 NOT a model-benchmark: different raw image types + cohorts, GOALS unlabeled, \u00b5m scale uncertain \u2192 any magnitude/referral read is non-identified (\u00a70). This CORROBORATES the synthetic-axis device result; models are benchmarked on the synthetic axis + real single-vendor GLEAM detection. A real cross-vendor DETECTION benchmark needs same-eye cross-device data (AI-READI, deferred)."
+  }
+}

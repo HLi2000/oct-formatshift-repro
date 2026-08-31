@@ -1,0 +1,41 @@
+{
+  "_comment": "Large binaries for OCT-FormatShift reproducibility, versioned as GitHub Release assets (not git blobs). The repo/release is PRIVATE: use scripts/fetch_oct_data.py (needs GH_TOKEN). For the ANONYMOUS submission, cite the public sources in the paper README instead of this release (it would de-anonymize). Bump the tag + this manifest together when the data changes.",
+  "release": {
+    "repo": "HLi2000/oct-formatshift-repro",
+    "tag": "data-cache",
+    "private": true
+  },
+  "assets": {
+    "oct_contender_npz.tar": {
+      "role": "FM/CNN per-eye contender npz (regenerates Fig 3 + Fig A3; committed VLM npz cover the VLM curves)",
+      "size": 252081664,
+      "sha256": "1c48060bc96118fa4d7d852bd949741939335056d9caa61cd438ed0b4f7d3ad3",
+      "extract": "tar -xf oct_contender_npz.tar   # restores data/derived[/map_fm]/*_contender.npz"
+    },
+    "gleam.zip": {
+      "role": "raw GLEAM Spectralis B-scans (Fig 1 + full panel regeneration); single-center, gleam2026",
+      "size": 558246501,
+      "sha256": null,
+      "verify": "size",
+      "extract": "unzip -d data/raw/gleam   # -> data/raw/gleam/GLEAM/"
+    },
+    "goals.zip": {
+      "role": "raw GOALS Topcon B-scans (cross-vendor validity Fig A2b); MICCAI-2022, Baidu AI Studio comp/230",
+      "size": 58915118,
+      "sha256": null,
+      "verify": "size",
+      "extract": "unzip -d data/raw/goals   # -> data/raw/goals/GOALS/"
+    },
+    "RETOUCH_part_aa": {
+      "role": "raw RETOUCH macular B-scans, tar part 1/2 (speckle calibration Fig A2a); MICCAI-2017, retouch.grand-challenge.org",
+      "size": 1062969344,
+      "sha256": "00964061b37a425ba3dcada8b84efffddfab9eee22f79a525883e7f47e65e86c"
+    },
+    "RETOUCH_part_ab": {
+      "role": "raw RETOUCH, tar part 2/2",
+      "size": 1062969342,
+      "sha256": "4f83058e685d30ed209c0a636417ae13a9c2114af436db454de9c78a1bc38526",
+      "reassemble": "cat RETOUCH_part_aa RETOUCH_part_ab > data/raw/retouch/RETOUCH.tar   (total 2125938686 bytes)"
+    }
+  }
+}

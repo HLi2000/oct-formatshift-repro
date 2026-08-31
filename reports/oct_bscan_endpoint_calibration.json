@@ -1,0 +1,115 @@
+{
+  "pair": "cirrus_to_spectralis",
+  "instrument": "eyened_oct_onh (reference, NOT a contender)",
+  "geometry": "circumpapillary calc-circle from the Cirrus cube (disc-centre = cup minimum)",
+  "n": 50,
+  "um_per_px": 10.0,
+  "discriminating_margin_um": 1.0,
+  "published": {
+    "bias_um": 1.94,
+    "loa_half_um": 7.68,
+    "source": "Warner 2011 PMC3154907"
+  },
+  "eyened_sweep": [
+    {
+      "dose": 0.25,
+      "induced_bias_um": 0.5893202401546748,
+      "induced_loa_half_um": 1.2125971489039118,
+      "tost_bias_within_margin": false,
+      "tost_p": 0.999895965088846
+    },
+    {
+      "dose": 0.5,
+      "induced_bias_um": 1.2110766256232806,
+      "induced_loa_half_um": 2.185844539154931,
+      "tost_bias_within_margin": true,
+      "tost_p": 0.045985950225326526
+    },
+    {
+      "dose": 0.75,
+      "induced_bias_um": 1.8582731250636002,
+      "induced_loa_half_um": 3.372137244234342,
+      "tost_bias_within_margin": true,
+      "tost_p": 0.0002170739346331738
+    },
+    {
+      "dose": 1.0,
+      "induced_bias_um": 2.4783759031240438,
+      "induced_loa_half_um": 4.841462733861122,
+      "tost_bias_within_margin": false,
+      "tost_p": 0.09624314809154647
+    },
+    {
+      "dose": 1.5,
+      "induced_bias_um": 1.4893914724737949,
+      "induced_loa_half_um": 6.795581299513567,
+      "tost_bias_within_margin": false,
+      "tost_p": 0.13398975909331287
+    }
+  ],
+  "classical_crosscheck_sweep": [
+    {
+      "dose": 0.25,
+      "induced_bias_um": 10.89921875,
+      "induced_loa_half_um": 10.263565958361678,
+      "tost_bias_within_margin": false,
+      "tost_p": 0.9999999999999913
+    },
+    {
+      "dose": 0.5,
+      "induced_bias_um": 20.3375,
+      "induced_loa_half_um": 15.951756068837295,
+      "tost_bias_within_margin": false,
+      "tost_p": 1.0
+    },
+    {
+      "dose": 0.75,
+      "induced_bias_um": 29.08125,
+      "induced_loa_half_um": 23.73150809298026,
+      "tost_bias_within_margin": false,
+      "tost_p": 1.0
+    },
+    {
+      "dose": 1.0,
+      "induced_bias_um": 36.42578125,
+      "induced_loa_half_um": 29.763070859084593,
+      "tost_bias_within_margin": false,
+      "tost_p": 1.0
+    },
+    {
+      "dose": 1.5,
+      "induced_bias_um": 45.240625,
+      "induced_loa_half_um": 37.53159851264082,
+      "tost_bias_within_margin": false,
+      "tost_p": 1.0
+    }
+  ],
+  "um_per_px_sensitivity": {
+    "7.0": {
+      "dose": 1.0,
+      "induced_bias_um": 1.73
+    },
+    "10.0": {
+      "dose": 0.75,
+      "induced_bias_um": 1.86
+    },
+    "13.0": {
+      "dose": 1.5,
+      "induced_bias_um": 1.94
+    }
+  },
+  "verdict": "appearance_stress_axis",
+  "verdict_note": "only the BIAS is matched (not the LoA) \u2192 an ImageNet-C-style appearance/quality-tolerance stress axis, NOT a calibrated device axis",
+  "geometry_grounding": {
+    "cube_spec": "Cirrus Optic Disc Cube 200x200 = 6x6x2 mm (Zeiss)",
+    "radius_frac": 0.5766666666666667,
+    "circle_mm": 3.46,
+    "axial_um_per_px": 10.0,
+    "disc_centre": "centroid of the device-marked disc (sentinel region), central"
+  },
+  "caveats": [
+    "disc centre + circle radius + \u00b5m/px are now PRINCIPLED (device disc-marking + Cirrus 6x6x2mm spec), not hand-set",
+    "residual: raster\u2192circle resampling adds interpolation artefacts vs a native circle scan; one learned segmenter (Eyened) + a simple gradient classical cross-check",
+    "so a device-LoA match is still evidence-not-proof \u2014 without real cross-device B-scans the honest ceiling is the appearance-stress-axis scoping"
+  ]
+}

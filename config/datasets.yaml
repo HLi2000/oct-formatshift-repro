@@ -1,0 +1,134 @@
+# Dataset registry for the glaucoma-triage data layer.
+# Paths are relative to the data directory (default ./data, override with GLAUCOMA_DATA_DIR).
+
+data_dir: data
+processed_subdir: processed
+
+# VF-MD simulation for healthy PAPILA eyes (removes the missingness leak; see
+# datasets/simulate.py). PAPILA runs 30-2 perimetry but only for eyes with IOP > 22 mmHg, so
+# healthy eyes almost never have an MD -> its presence leaks the label. We impute a normal-eye
+# MD for them, grounded in the literature on normal-eye MD:
+#   - distribution = Gaussian (normal-eye MD passes normality tests; Wall et al. PubMed 27580755)
+#   - mean ~ 0 dB, no age term (MD is age-corrected by the normative DB; PubMed 11919433)
+#   - std = 1.0 dB: the published normal band -2..+2 dB is the 95% interval, so 2*sigma ~ 2 dB
+#     => sigma ~ 1.0 (StatPearls NBK585112). This is >= the Harvard-GF non-glaucoma real std
+#     (~0.70, compressed by VF-based selection); we must not make simulated narrower than real.
+#   - clip = +/-4 dB (~4 sigma): a wide PHYSIOLOGICAL guard, NOT the -2..+2 clinical band. The
+#     band is the 5th-95th percentile; clipping there would discard the legitimate lower-5%
+#     normal tail and make the simulated set a too-clean spike separable from real MD.
+# 30-2 vs 24-2 is immaterial for the global, center-weighted MD index. Humphrey convention
+# (loss = negative).
+vf_md_simulation:
+  mean: 0.0
+  std: 1.0
+  trunc: [-4.0, 4.0]   # dB; wide physiological guard (~4 sigma), not the 95% normal band
+  seed: 140
+
+papila:
+  # figshare article id (https://doi.org/10.6084/m9.figshare.14798004). The download
+  # module resolves the current version's file(s) via the figshare API at run time.
+  figshare_article_id: 14798004
+  raw_subdir: raw/papila
+  # Folder names inside the extracted archive (located recursively, so a top-level
+  # PAPILA/ wrapper folder is fine).
+  clinical_dirname: ClinicalData
+  fundus_dirname: FundusImages
+  segmentations_dirname: ExpertsSegmentations
+  encodings:
+    gender: { 0: male, 1: female }
+    diagnosis: { 0: healthy, 1: glaucoma, 2: suspect }
+
+grape:
+  # GRAPE (Huang et al., Scientific Data 2023). All-glaucoma longitudinal cohort; progression only.
+  # Figshare collection 6406319 (open). xlsx = core tabular (445 KB); CFPs.rar = 631 colour fundus
+  # photos (116 MB, 2 cameras: TOPCON TRC-NW8 1556² + Canon CR-2 2136²) named {subj}_{lat}_{visit}.jpg.
+  raw_subdir: raw/grape
+  xlsx_url: "https://ndownloader.figshare.com/files/41670009"
+  xlsx_name: "vf_clinical.xlsx"
+  cfp_url: "https://ndownloader.figshare.com/files/41358156"   # article 23575926 "GRAPE dataset: CFPs"
+  cfp_rar_name: "CFPs.rar"
+  cfp_subdir: "CFPs"   # extracted, flattened -> raw/grape/CFPs/{subj}_{lat}_{visit}.jpg
+
+harvard_gdp:
+  # Harvard-GDP1000 (Glaucoma Detection & Progression), ICCV 2023. Public, ungated HF mirror.
+  # Licence CC BY-NC-ND 4.0. The CSV manifest carries baseline VF (md + td1..td54) + the six
+  # progression labels + demographics + splits; only 500 of 1000 rows are progression-labelled.
+  # OCT RNFLT maps live in the 9.5 GB Dataset/dataset.zip (needed only for the OCT half of the probe).
+  hf_repo_id: "harvardairobotics/Harvard-GDP"
+  hf_zip_filename: "Dataset/dataset.zip"
+  hf_summary_csv: "ReadMe/data_summary.csv"
+  raw_subdir: raw/harvard_gdp
+  encodings:
+    glaucoma: { 0: non-glaucoma, 1: glaucoma }
+
+uwhvf:
+  # UWHVF (Montesano et al., TVST 2022). 28,943 Humphrey 24-2 SITA visual fields / 7,428 eyes /
+  # 3,871 patients from routine care. Public, ungated (single JSON on GitHub, ~53 MB). UNLABELED
+  # (no diagnosis) — used as the training anchor + format-variant source for the VF format-tolerance
+  # study; the interpretation target is VF-intrinsic (MD = mean TD, abnormal-field staging). JSON:
+  # {pts, eyes, hvfs, coords:[{x,y,index}], data:{pid:{gender, year, R|L:[{age, hvf, hvf_seq, td, td_seq}]}}}
+  # with 100.0 marking untested locations.
+  raw_subdir: raw/uwhvf
+  json_url: "https://raw.githubusercontent.com/uw-biomedical-ml/uwhvf/master/alldata.json"
+  json_name: "alldata.json"
+
+rotterdam:
+  # Rotterdam longitudinal VF repository (Bryan et al. 2013 IOVS), 139 glaucoma patients, Humphrey 24-2
+  # **Full Threshold**, ~10.5 yr, 54 pointwise rows/field (52 test + 2 blind-spot) with real (X,Y) degrees +
+  # TOTAL_DEVIATION. The original rod-rep.com is registration-gated; this is a public CSV mirror (a byte-for-byte
+  # copy of lcapacitor's longitudinal-VF-simulator repo, Li et al. 2023 TVST — data/Rotterdam). The "different-algorithm" (Full-Threshold vs SITA) rung of the
+  # format-distance ladder. VisualFields.csv = per-field (STUDY_ID, FIELD_ID, SITE, MD, AGE, IOP);
+  # VFPoints.csv = pointwise (FIELD_ID, X, Y, THRESHOLD, TOTAL_DEVIATION); Patients.csv = STUDY_ID,SEX.
+  raw_subdir: raw/rotterdam
+  mirror_base: "https://raw.githubusercontent.com/lcapacitor/glaucoma-longitudinal-vf-simulator/main/data/Rotterdam"
+  files: ["Patients.csv", "VisualFields.csv", "VFPoints.csv"]
+
+visualfields:
+  # visualFields R package (Apache-2.0), CRAN source tarball — bundles real pointwise VF datasets used to
+  # GROUND the format study: vfctrSunyiu24d2 (263 healthy 24-2 controls → empirical HFA normative) and
+  # vfpwgRetest24d2 (30 glaucoma × 12 weekly 24-2 → real test-retest σ + repeatability). Columns:
+  # id,eye,date,time,age,type,fpr,fnr,fl,duration,l1..l54 (l* = pointwise sensitivity dB). Read via pyreadr.
+  raw_subdir: raw/visualfields
+  cran_index: "https://cran.r-project.org/src/contrib/"
+  package: "visualFields"
+  # locmaps/normvals = the package's location-coordinate maps + normative tables (nested R lists → read via
+  # `rdata`, NOT pyreadr) for the authoritative p24d2 grid registration; vfctrIowaPC26/Peri = 98 genuine-healthy
+  # full-field controls (central ≤26° / peripheral 26–81°, l1..l64) → genuine-healthy specificity (Iowa-only).
+  datasets: ["vfctrSunyiu24d2", "vfpwgRetest24d2", "vfctrSunyiu10d2", "vfpwgSunyiu24d2",
+             "vfctrIowaPC26", "vfctrIowaPeri", "locmaps", "normvals"]
+
+eyecatcher:
+  # Eyecatcher home-monitoring (Jones et al.), Mendeley Data swsfj47cxw v2, CC BY. 20 ppts × 2 eyes × 11
+  # tests: HFA (pre/post) + Eyecatcher tablet home tests. Columns ParticipantID,Eye,TestN,Device,
+  # SessionType,MD_dB,MD_adj_dB,duration_secs, then DLS_x{X}_y{Y}_dB pointwise sensitivities at real 24-2
+  # (x,y) degrees ("Neg"=minus; NaN=untested). Yields real HFA↔tablet cross-device same-eye pairs.
+  raw_subdir: raw/eyecatcher
+  mendeley_api: "https://data.mendeley.com/public-api/datasets/swsfj47cxw/files?folder_id=root&version=2"
+  csv_name: "eyecatcher_home_rawdata.csv"
+
+vf10_2:
+  # Mendeley Data w34s5mhvpm (CC BY): real longitudinal Humphrey **10-2** glaucoma fields — columns
+  # id,count,time,MD,TD_2..TD_71 (68 pointwise total deviations, loss=negative). No coords shipped;
+  # placed on the authoritative visualFields p10d2 layout (68 pts, central ±9°) embedded in vf_extra.
+  # 10-2 samples the central field only → a cross-PATTERN rung (central-only; MD not 24-2-comparable).
+  raw_subdir: raw/vf10_2
+  mendeley_api: "https://data.mendeley.com/public-api/datasets/w34s5mhvpm/files?folder_id=root&version=1"
+  csv_name: "vf10_2.csv"
+
+harvard_gf:
+  # Primary source: the public, ungated Hugging Face mirror (no token needed).
+  # Licence CC BY-NC-ND 4.0 (non-commercial research, no derivatives).
+  hf_repo_id: "harvardairobotics/Harvard-GF"
+  hf_zip_filename: "Dataset/dataset.zip"
+  hf_summary_csv: "ReadMe/data_summary.csv"
+  # Fallback source: gated Harvard Dataverse (needs DATAVERSE_TOKEN + ToU acceptance).
+  dataverse_base: "https://dataverse.harvard.edu"
+  dataverse_doi: "doi:10.7910/DVN/A4XMO1"
+  raw_subdir: raw/harvard_gf
+  # Map split labels (from the CSV 'use' column or split-folder names) to canonical labels.
+  splits: { training: train, validation: val, val: val, test: test, Training: train, Validation: val, Test: test }
+  encodings:
+    male: { 0: female, 1: male }
+    race: { 0: Asian, 1: Black, 2: White }
+    ethnicity: { 0: non-hispanic, 1: hispanic, -1: unknown }
+    glaucoma: { 0: non-glaucoma, 1: glaucoma }

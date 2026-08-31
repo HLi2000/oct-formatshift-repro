@@ -1,0 +1,180 @@
+{
+  "_meta": {
+    "source": "data/derived/<arm>_contender.npz (committed per-eye VLM scores; no re-query)",
+    "n_bins_ece": 10,
+    "net_calibration_error": "Net Calibration Error (Groot & Valdenegro-Toro 2024): signed calibration error mean max(p,1-p) minus decision-accuracy; positive = overconfident. Signed counterpart of the reliability diagram. (signed_ece_positive_class is a different, unused-in-paper quantity: mean p minus prevalence.)",
+    "temperature_scaling": "Guo 2017; T fit on held-out clean half (NLL), positive-class ECE on complementary half (matches Table 1); 0.5-threshold decision (hence clean->shift flip) invariant to T"
+  },
+  "arms": {
+    "gemini_3p6_flash_fewshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.26475,
+      "mean_confidence": 0.9221944444444444,
+      "decision_accuracy": 0.6638888888888889,
+      "net_calibration_error": 0.25830555555555557,
+      "signed_ece_positive_class": -0.13236111111111104,
+      "post_hoc": {
+        "temperature": 3.574275418037988,
+        "ece_before_heldout": 0.27094444444444443,
+        "ece_after_heldout": 0.06551077404985649,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "gemini_3p6_flash_zeroshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.35552777777777766,
+      "mean_confidence": 0.9049722222222223,
+      "decision_accuracy": 0.5555555555555556,
+      "net_calibration_error": 0.3494166666666667,
+      "signed_ece_positive_class": -0.21497222222222223,
+      "post_hoc": {
+        "temperature": 10.019661051530855,
+        "ece_before_heldout": 0.35283333333333333,
+        "ece_after_heldout": 0.018047023924865138,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "openai_5p6_sol_fewshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.23305555555555557,
+      "mean_confidence": 0.8395,
+      "decision_accuracy": 0.6111111111111112,
+      "net_calibration_error": 0.22838888888888886,
+      "signed_ece_positive_class": -0.08299999999999996,
+      "post_hoc": {
+        "temperature": 3.034736472370519,
+        "ece_before_heldout": 0.2585,
+        "ece_after_heldout": 0.07236175692464948,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "openai_5p6_sol_zeroshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.30741666666666667,
+      "mean_confidence": 0.8323055555555555,
+      "decision_accuracy": 0.5277777777777778,
+      "net_calibration_error": 0.30452777777777773,
+      "signed_ece_positive_class": -0.29708333333333325,
+      "post_hoc": {
+        "temperature": 9.08819167201692,
+        "ece_before_heldout": 0.3136666666666666,
+        "ece_after_heldout": 0.02554106659414227,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "claude_opus_5_fewshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.15972222222222215,
+      "mean_confidence": 0.7290555555555557,
+      "decision_accuracy": 0.5972222222222222,
+      "net_calibration_error": 0.13183333333333347,
+      "signed_ece_positive_class": 0.12199999999999994,
+      "post_hoc": {
+        "temperature": 2.229224510145773,
+        "ece_before_heldout": 0.15694444444444441,
+        "ece_after_heldout": 0.09140914594861659,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "claude_opus_5_zeroshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.11299999999999995,
+      "mean_confidence": 0.6284444444444445,
+      "decision_accuracy": 0.5527777777777778,
+      "net_calibration_error": 0.07566666666666666,
+      "signed_ece_positive_class": 0.08027777777777773,
+      "post_hoc": {
+        "temperature": 1.663493461187962,
+        "ece_before_heldout": 0.10427777777777783,
+        "ece_after_heldout": 0.06242434818505662,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "gemini_2p5_flash_fewshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.2965555555555555,
+      "mean_confidence": 0.8754444444444444,
+      "decision_accuracy": 0.5805555555555556,
+      "net_calibration_error": 0.29488888888888876,
+      "signed_ece_positive_class": 0.06461111111111112,
+      "post_hoc": {
+        "temperature": 5.733337371492868,
+        "ece_before_heldout": 0.30083333333333345,
+        "ece_after_heldout": 0.029026584354018323,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "gemini_2p5_flash_zeroshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.3904722222222223,
+      "mean_confidence": 0.9090833333333332,
+      "decision_accuracy": 0.5305555555555556,
+      "net_calibration_error": 0.3785277777777777,
+      "signed_ece_positive_class": -0.37213888888888885,
+      "post_hoc": {
+        "temperature": 19.999994086861975,
+        "ece_before_heldout": 0.3997222222222222,
+        "ece_after_heldout": 0.01479128216306335,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "gemini_2p5_pro_fewshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.3244444444444444,
+      "mean_confidence": 0.9527777777777777,
+      "decision_accuracy": 0.6305555555555555,
+      "net_calibration_error": 0.3222222222222222,
+      "signed_ece_positive_class": 0.08444444444444438,
+      "post_hoc": {
+        "temperature": 7.602225588473071,
+        "ece_before_heldout": 0.32738888888888884,
+        "ece_after_heldout": 0.05390021414535413,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    },
+    "gemini_2p5_pro_zeroshot_think": {
+      "n": 360,
+      "prevalence": 0.4888888888888889,
+      "ece_clean_full": 0.42208333333333337,
+      "mean_confidence": 0.9481944444444443,
+      "decision_accuracy": 0.5277777777777778,
+      "net_calibration_error": 0.42041666666666655,
+      "signed_ece_positive_class": -0.3749166666666667,
+      "post_hoc": {
+        "temperature": 19.99999386932271,
+        "ece_before_heldout": 0.4092777777777778,
+        "ece_after_heldout": 0.014593725930657,
+        "n_fit": 180,
+        "n_eval": 180,
+        "decision_invariant_to_T": true
+      }
+    }
+  }
+}

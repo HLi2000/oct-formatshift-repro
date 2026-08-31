@@ -1,0 +1,46 @@
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Headline configurations, both axes} (calibrated shift, eye-level bootstrap 95\% CIs). Columns: clean AUC,
+  decision-\emph{flip}, $\Delta$sens@spec (signed clean$-$shift), clean ECE, net calibration error (NCE) and
+  $\Delta$AUC. Lower flip, $|\Delta\text{sens}|$, ECE and $|\Delta\text{AUC}|$ are better. \textbf{Bold} is the best
+  AUC, flip and ECE per column among readers with useful discrimination (clean AUC $\ge 0.70$); a near-chance reader
+  can post a trivially low flip, so flip is read together with AUC. NCE is a signed calibration error
+  \citep{groot2024overconfidence} (mean predicted-class confidence minus accuracy; $+$ $=$ overconfident); $\Delta$sens,
+  NCE and $\Delta$AUC are signed diagnostics ($\approx$0 ideal) and are not bolded. The ImageNet-CNN row is the best
+  per axis; the from-scratch SmallCNN is trained end-to-end on each axis and never sees the test shift. VLMs are
+  prompted (\textit{fs} = few-shot). Full per-axis tables (B-scan 29 configurations, map 25), with realized spec@shift
+  and flip/$\Delta$sens CIs, are in App.~\ref{app:fulltables}.}
+  \label{tab:main}
+  \small
+  \renewcommand{\arraystretch}{0.9}
+  \setlength{\tabcolsep}{3pt}
+  \begin{tabular}{llcccccc}
+    \toprule
+    Reader & Class & AUC \ci{95\%}{CI} & Flip$\downarrow$ & $\Delta$sens & ECE$\downarrow$ & NCE & $\Delta$AUC \\
+    \midrule
+    \multicolumn{8}{l}{\textit{\textbf{B-scan axis}} \quad Spectralis\,$\rightarrow$\,Topcon, $n{=}360$ eyes} \\
+    \midrule
+    DINOv2\,$\cdot$\,FT       & generic FM     & \textbf{0.88} \ci{0.84}{0.91} & \textbf{0.09} & $+0.08$ & 0.05 & $-0.00$ & $+0.01$ \\
+    RETFound\,$\cdot$\,FT     & OCT FM         & 0.85 \ci{0.80}{0.89}          & 0.14 & $-0.09$ & 0.07 & $+0.07$ & $-0.01$ \\
+    MIRAGE\,$\cdot$\,LP       & OCT FM         & 0.70 \ci{0.65}{0.76}          & 0.47 & $-0.72$ & \textbf{0.04} & $-0.02$ & $+0.04$ \\
+    ConvNeXt-B\,$\cdot$\,LP   & ImageNet CNN   & 0.83 \ci{0.78}{0.87}          & 0.11 & $+0.07$ & 0.07 & $+0.03$ & $+0.04$ \\
+    SmallCNN (98k)           & scratch CNN    & 0.79 \ci{0.74}{0.83}          & 0.27 & $-0.32$ & \textbf{0.04} & $-0.04$ & $+0.02$ \\
+    Gemini 3.6 Flash\,\textit{fs}  & frontier VLM   & 0.69 \ci{0.64}{0.74}          & 0.15 & $+0.01$ & 0.26 & $+0.26$ & $-0.00$ \\
+    GPT-5.6 Sol\,\textit{fs}     & frontier VLM   & 0.67 \ci{0.61}{0.73}          & 0.24 & $+0.11$ & 0.23 & $+0.23$ & $-0.01$ \\
+    Claude Opus~5\,\textit{fs}& frontier VLM  & 0.67 \ci{0.62}{0.73}          & 0.18 & $+0.05$ & 0.16 & $+0.13$ & $+0.03$ \\
+    Qwen3-VL-8B\,\textit{fs} & open VLM       & 0.54 \ci{0.49}{0.58}          & 0.02 & $+0.00$ & 0.38 & $+0.38$ & $+0.00$ \\
+    MedGemma-1.5-4B\,\textit{fs}    & specialist VLM & 0.49 \ci{0.43}{0.54}          & 0.00 & $+0.03$ & 0.42 & $+0.42$ & $-0.04$ \\
+    \midrule
+    \multicolumn{8}{l}{\textit{\textbf{Thickness-map axis}} \quad Cirrus\,$\rightarrow$\,Spectralis, $n{=}300$ eyes} \\
+    \midrule
+    DINOv2\,$\cdot$\,FT       & generic FM     & \textbf{0.88} \ci{0.83}{0.91} & 0.04 & $+0.01$ & 0.09 & $-0.02$ & $+0.00$ \\
+    ConvNeXt-L\,$\cdot$\,FT   & ImageNet CNN   & 0.87 \ci{0.83}{0.91}          & \textbf{0.02} & $+0.01$ & \textbf{0.07} & $-0.04$ & $+0.00$ \\
+    SmallCNN (98k)           & scratch CNN    & 0.85 \ci{0.80}{0.89}          & \textbf{0.02} & $+0.00$ & 0.12 & $+0.03$ & $-0.01$ \\
+    GPT-5.6 Sol\,\textit{fs}     & frontier VLM   & 0.84 \ci{0.79}{0.88}          & 0.09 & $+0.02$ & 0.11 & $+0.11$ & $-0.00$ \\
+    Gemini 3.6 Flash\,\textit{fs}  & frontier VLM   & 0.84 \ci{0.79}{0.88}          & 0.05 & $+0.06$ & 0.15 & $+0.13$ & $+0.02$ \\
+    Claude Opus~5\,\textit{fs}& frontier VLM  & 0.83 \ci{0.78}{0.88}          & 0.09 & $+0.03$ & \textbf{0.07} & $+0.01$ & $-0.00$ \\
+    Qwen3-VL-8B\,\textit{fs} & open VLM       & 0.59 \ci{0.55}{0.62}          & 0.05 & $+0.00$ & 0.36 & $+0.36$ & $+0.02$ \\
+    MedGemma-1.5-4B\,\textit{fs}    & specialist VLM & 0.55 \ci{0.48}{0.61}          & 0.03 & $+0.00$ & 0.30 & $+0.30$ & $+0.02$ \\
+    \bottomrule
+  \end{tabular}
+\end{table}

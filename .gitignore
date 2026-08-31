@@ -1,0 +1,42 @@
+# Environments / secrets
+.env
+.venv/
+.venv-*/
+__pycache__/
+*.py[cod]
+.python-version
+
+# Asset download staging (fetch_oct_data.py writes here)
+/data/_dl/
+
+# Data: commit only the small per-eye npz; the big FM/CNN npz + raw datasets
+# come from the private Release via scripts/fetch_oct_data.py.
+/data/*
+!/data/derived/
+/data/derived/*
+!/data/derived/eyened_cprnfl.npz
+!/data/derived/gemini_*_contender.npz
+!/data/derived/openai_*_contender.npz
+!/data/derived/claude_*_contender.npz
+!/data/derived/qwen*_contender.npz
+!/data/derived/medgemma_*_contender.npz
+!/data/derived/map_fm/
+/data/derived/map_fm/*
+!/data/derived/map_fm/gemini_*_contender.npz
+!/data/derived/map_fm/openai_*_contender.npz
+!/data/derived/map_fm/claude_*_contender.npz
+!/data/derived/map_fm/qwen*_contender.npz
+!/data/derived/map_fm/medgemma_*_contender.npz
+
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.synctex.gz
+
+# OS / tooling
+.DS_Store
+.pytest_cache/
+.ruff_cache/

@@ -1,0 +1,1923 @@
+{
+  "meta": {
+    "axis": "bscan_appearance_stress",
+    "adaptation": "linear-probe",
+    "spec": 0.9,
+    "models": [
+      "claude_opus_5_fewshot_think",
+      "claude_opus_5_zeroshot_think",
+      "convnext_base",
+      "convnext_base_ft",
+      "convnext_large",
+      "convnext_large_ft",
+      "convnext_tiny",
+      "convnext_tiny_ft",
+      "dinov2_ft",
+      "dinov2_reg",
+      "gemini_2p5_flash_fewshot_think",
+      "gemini_2p5_flash_zeroshot_think",
+      "gemini_2p5_pro_fewshot_think",
+      "gemini_2p5_pro_zeroshot_think",
+      "gemini_3p6_flash_fewshot_think",
+      "gemini_3p6_flash_zeroshot_think",
+      "medgemma_4b_fewshot",
+      "medgemma_4b_zeroshot",
+      "mirage",
+      "mirage_ft",
+      "openai_5p6_sol_fewshot_think",
+      "openai_5p6_sol_zeroshot_think",
+      "qwen3vl_8b_fewshot",
+      "qwen3vl_8b_zeroshot",
+      "resnet50",
+      "resnet50_ft",
+      "retfound",
+      "retfound_ft",
+      "supervised"
+    ],
+    "levels": [
+      1.0
+    ],
+    "headline_level": 1.0,
+    "primary_metric": "paired clean->perturbed degradation (referral-flip, \u0394AUC, \u0394sens@spec, retention)",
+    "note": "the B-scan APPEARANCE/QUALITY-TOLERANCE stress axis (ImageNet-C/MedMNIST-C bar), NOT the calibrated device axis (that is the map/thickness panel). FMs are all OOD on disc (no disc-native FM has public weights) \u2192 compared on equal all-OOD footing; the supervised B-scan CNN is the IN-DOMAIN from-scratch arm (scored on its OWN held-out GLEAM split \u2014 comparable in KIND, not on the FMs' exact eyes). GLEAM is single-center (~40-180 glaucoma) \u2192 the retention gate can be 'indeterminate' (disclosed). Axis-LABELLED bscan; NEVER cross-ranked against the map/device panel (\u00a70)."
+  },
+  "panel": {
+    "claude_opus_5_fewshot_think": {
+      "model": "claude_opus_5_fewshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "claude_opus_5_fewshot_think",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.18055555555555555,
+          "auc_clean": 0.6731564970355731,
+          "auc_shift": 0.6430335968379446,
+          "delta_auc": 0.030122900197628533,
+          "sens_at_spec_clean": 0.2215909090909091,
+          "sens_at_spec_shift": 0.17613636363636365,
+          "delta_sens_at_spec": 0.04545454545454544,
+          "spec_realized_shift": 0.967391304347826,
+          "retention": 0.7948717948717949,
+          "ece_clean": 0.15972222222222215,
+          "ece_shift": 0.19494444444444436,
+          "delta_ece": 0.03522222222222221,
+          "op_threshold": 0.82,
+          "ci": {
+            "auc_clean": [
+              0.6211944481259752,
+              0.7286415874622553
+            ],
+            "auc_shift": [
+              0.5894137364787153,
+              0.7018824263846827
+            ],
+            "delta_auc": [
+              -0.006358538102878716,
+              0.06822155558137413
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.08917481801637853
+            ],
+            "referral_flip": [
+              0.14166666666666666,
+              0.21951388888888881
+            ],
+            "retention": [
+              0.6340821566110398,
+              1.0
+            ],
+            "delta_ece": [
+              -6.52777777778614e-05,
+              0.06916805555555558
+            ]
+          }
+        }
+      }
+    },
+    "claude_opus_5_zeroshot_think": {
+      "model": "claude_opus_5_zeroshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "claude_opus_5_zeroshot_think",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.26944444444444443,
+          "auc_clean": 0.6068274456521738,
+          "auc_shift": 0.5966681077075099,
+          "delta_auc": 0.010159337944663949,
+          "sens_at_spec_clean": 0.14204545454545456,
+          "sens_at_spec_shift": 0.17613636363636365,
+          "delta_sens_at_spec": -0.03409090909090909,
+          "spec_realized_shift": 0.967391304347826,
+          "retention": 1.0,
+          "ece_clean": 0.11299999999999995,
+          "ece_shift": 0.12669444444444447,
+          "delta_ece": 0.013694444444444523,
+          "op_threshold": 0.68,
+          "ci": {
+            "auc_clean": [
+              0.547248326921468,
+              0.6625381319386257
+            ],
+            "auc_shift": [
+              0.537732880508038,
+              0.6519800246998576
+            ],
+            "delta_auc": [
+              -0.04986401916208173,
+              0.06741685440531456
+            ],
+            "delta_sens_at_spec": [
+              -0.09036304793642656,
+              0.021297167038909118
+            ],
+            "referral_flip": [
+              0.2222222222222222,
+              0.3139583333333333
+            ],
+            "retention": [
+              0.8846153846153847,
+              1.0
+            ],
+            "delta_ece": [
+              -0.03153125000000008,
+              0.05647847222222216
+            ]
+          }
+        }
+      }
+    },
+    "convnext_base": {
+      "model": "convnext_base",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_base",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.10833333333333334,
+          "auc_clean": 0.8262104743083004,
+          "auc_shift": 0.7878582015810278,
+          "delta_auc": 0.038352272727272596,
+          "sens_at_spec_clean": 0.6022727272727273,
+          "sens_at_spec_shift": 0.5340909090909091,
+          "delta_sens_at_spec": 0.06818181818181823,
+          "spec_realized_shift": 0.907608695652174,
+          "retention": 0.8867924528301886,
+          "ece_clean": 0.06993406908621184,
+          "ece_shift": 0.07136513494243447,
+          "delta_ece": 0.0014310658562226297,
+          "op_threshold": 0.6580706071619222,
+          "ci": {
+            "auc_clean": [
+              0.782142339648199,
+              0.8676846045760735
+            ],
+            "auc_shift": [
+              0.7432776670291814,
+              0.8361537607896239
+            ],
+            "delta_auc": [
+              0.013277589897924389,
+              0.06741507288639648
+            ],
+            "delta_sens_at_spec": [
+              0.01694209039548029,
+              0.12755668934240372
+            ],
+            "referral_flip": [
+              0.075,
+              0.14166666666666666
+            ],
+            "retention": [
+              0.7983835597057157,
+              0.9705882352941176
+            ],
+            "delta_ece": [
+              -0.03815667664401747,
+              0.04547565593459469
+            ]
+          }
+        }
+      }
+    },
+    "convnext_base_ft": {
+      "model": "convnext_base_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_base_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.1361111111111111,
+          "auc_clean": 0.8535387845849801,
+          "auc_shift": 0.8036530385375495,
+          "delta_auc": 0.04988574604743057,
+          "sens_at_spec_clean": 0.6647727272727273,
+          "sens_at_spec_shift": 0.7159090909090909,
+          "delta_sens_at_spec": -0.051136363636363646,
+          "spec_realized_shift": 0.7391304347826086,
+          "retention": 1.0,
+          "ece_clean": 0.04851702595543529,
+          "ece_shift": 0.06360001338438856,
+          "delta_ece": 0.015082987428953268,
+          "op_threshold": 0.48269727230072035,
+          "ci": {
+            "auc_clean": [
+              0.8117516103586411,
+              0.8895853245853247
+            ],
+            "auc_shift": [
+              0.7567440315100972,
+              0.850989777743853
+            ],
+            "delta_auc": [
+              0.024074759870798355,
+              0.07763803484993402
+            ],
+            "delta_sens_at_spec": [
+              -0.10422207446808518,
+              0.005496031746031725
+            ],
+            "referral_flip": [
+              0.1,
+              0.17222222222222222
+            ],
+            "retention": [
+              0.9926993881494204,
+              1.0
+            ],
+            "delta_ece": [
+              -0.03220699528516786,
+              0.0541996019693195
+            ]
+          }
+        }
+      }
+    },
+    "convnext_large": {
+      "model": "convnext_large",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_large",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.16666666666666666,
+          "auc_clean": 0.8252840909090908,
+          "auc_shift": 0.7772665513833992,
+          "delta_auc": 0.048017539525691655,
+          "sens_at_spec_clean": 0.5965909090909091,
+          "sens_at_spec_shift": 0.5681818181818182,
+          "delta_sens_at_spec": 0.02840909090909083,
+          "spec_realized_shift": 0.8260869565217391,
+          "retention": 0.9523809523809526,
+          "ece_clean": 0.061766726377149445,
+          "ece_shift": 0.0761142398715781,
+          "delta_ece": 0.014347513494428657,
+          "op_threshold": 0.6406498524195162,
+          "ci": {
+            "auc_clean": [
+              0.7823579599412932,
+              0.8627241180752266
+            ],
+            "auc_shift": [
+              0.7313301517655819,
+              0.8229430522192376
+            ],
+            "delta_auc": [
+              0.016168807630461402,
+              0.08033871730535752
+            ],
+            "delta_sens_at_spec": [
+              -0.034310924369747864,
+              0.09438012197446154
+            ],
+            "referral_flip": [
+              0.12777777777777777,
+              0.20555555555555555
+            ],
+            "retention": [
+              0.85,
+              1.0
+            ],
+            "delta_ece": [
+              -0.024892756592875813,
+              0.055747486609877904
+            ]
+          }
+        }
+      }
+    },
+    "convnext_large_ft": {
+      "model": "convnext_large_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_large_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.1527777777777778,
+          "auc_clean": 0.8360455780632411,
+          "auc_shift": 0.7906219120553359,
+          "delta_auc": 0.04542366600790515,
+          "sens_at_spec_clean": 0.6079545454545454,
+          "sens_at_spec_shift": 0.6761363636363636,
+          "delta_sens_at_spec": -0.06818181818181823,
+          "spec_realized_shift": 0.7608695652173914,
+          "retention": 1.0,
+          "ece_clean": 0.06602110545047456,
+          "ece_shift": 0.05797612934062879,
+          "delta_ece": -0.008044976109845767,
+          "op_threshold": 0.5249448716640474,
+          "ci": {
+            "auc_clean": [
+              0.7887269335898044,
+              0.8726912062701928
+            ],
+            "auc_shift": [
+              0.7393046757860426,
+              0.8333505700917873
+            ],
+            "delta_auc": [
+              0.019478971998555777,
+              0.07220057311776057
+            ],
+            "delta_sens_at_spec": [
+              -0.1207027168234065,
+              -0.017543859649122858
+            ],
+            "referral_flip": [
+              0.11666666666666667,
+              0.19444444444444445
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              -0.06634985774238077,
+              0.047026954717002765
+            ]
+          }
+        }
+      }
+    },
+    "convnext_tiny": {
+      "model": "convnext_tiny",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_tiny",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.325,
+          "auc_clean": 0.8260251976284585,
+          "auc_shift": 0.7884449110671936,
+          "delta_auc": 0.037580286561264886,
+          "sens_at_spec_clean": 0.5852272727272727,
+          "sens_at_spec_shift": 0.7840909090909091,
+          "delta_sens_at_spec": -0.19886363636363635,
+          "spec_realized_shift": 0.6032608695652174,
+          "retention": 1.0,
+          "ece_clean": 0.03600410352331646,
+          "ece_shift": 0.20756489233818795,
+          "delta_ece": 0.1715607888148715,
+          "op_threshold": 0.6798734272695375,
+          "ci": {
+            "auc_clean": [
+              0.7833971193787186,
+              0.8653686237356328
+            ],
+            "auc_shift": [
+              0.7427713157909568,
+              0.8353926199520714
+            ],
+            "delta_auc": [
+              0.009102473892139912,
+              0.06491519192547283
+            ],
+            "delta_sens_at_spec": [
+              -0.2637917933130699,
+              -0.13556360488427202
+            ],
+            "referral_flip": [
+              0.2777777777777778,
+              0.375
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.0893325489163495,
+              0.18286931164009587
+            ]
+          }
+        }
+      }
+    },
+    "convnext_tiny_ft": {
+      "model": "convnext_tiny_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "convnext_tiny_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.1111111111111111,
+          "auc_clean": 0.8687314723320158,
+          "auc_shift": 0.8427464179841896,
+          "delta_auc": 0.025985054347826164,
+          "sens_at_spec_clean": 0.7386363636363636,
+          "sens_at_spec_shift": 0.8352272727272727,
+          "delta_sens_at_spec": -0.09659090909090906,
+          "spec_realized_shift": 0.6793478260869565,
+          "retention": 1.0,
+          "ece_clean": 0.06720656649623481,
+          "ece_shift": 0.05773888484885295,
+          "delta_ece": -0.009467681647381862,
+          "op_threshold": 0.41292726695537574,
+          "ci": {
+            "auc_clean": [
+              0.8305994001231122,
+              0.9043734210872207
+            ],
+            "auc_shift": [
+              0.7996716074813972,
+              0.8810543783969542
+            ],
+            "delta_auc": [
+              0.005661777499364121,
+              0.04742871055652371
+            ],
+            "delta_sens_at_spec": [
+              -0.14132287549407122,
+              -0.05554029304029297
+            ],
+            "referral_flip": [
+              0.08055555555555556,
+              0.14166666666666666
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              -0.04723106811301678,
+              0.040120756707231794
+            ]
+          }
+        }
+      }
+    },
+    "dinov2_ft": {
+      "model": "dinov2_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "dinov2_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.08611111111111111,
+          "auc_clean": 0.8762042984189724,
+          "auc_shift": 0.8653656126482213,
+          "delta_auc": 0.010838685770751089,
+          "sens_at_spec_clean": 0.6875,
+          "sens_at_spec_shift": 0.6079545454545454,
+          "delta_sens_at_spec": 0.07954545454545459,
+          "spec_realized_shift": 0.9239130434782609,
+          "retention": 0.884297520661157,
+          "ece_clean": 0.0520821081267463,
+          "ece_shift": 0.08348853343890773,
+          "delta_ece": 0.03140642531216143,
+          "op_threshold": 0.4400614470243455,
+          "ci": {
+            "auc_clean": [
+              0.8402944535325165,
+              0.911022013591907
+            ],
+            "auc_shift": [
+              0.8280063273649156,
+              0.899019198610574
+            ],
+            "delta_auc": [
+              -0.005053662239261214,
+              0.027192512170041712
+            ],
+            "delta_sens_at_spec": [
+              0.034086093990754976,
+              0.1286549707602339
+            ],
+            "referral_flip": [
+              0.058333333333333334,
+              0.11666666666666667
+            ],
+            "retention": [
+              0.8135593220338984,
+              0.9478260869565217
+            ],
+            "delta_ece": [
+              -0.01147536397756392,
+              0.04982737960552587
+            ]
+          }
+        }
+      }
+    },
+    "dinov2_reg": {
+      "model": "dinov2_reg",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "dinov2_reg",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.19444444444444445,
+          "auc_clean": 0.8416810770750986,
+          "auc_shift": 0.782516057312253,
+          "delta_auc": 0.059165019762845605,
+          "sens_at_spec_clean": 0.5909090909090909,
+          "sens_at_spec_shift": 0.42613636363636365,
+          "delta_sens_at_spec": 0.1647727272727273,
+          "spec_realized_shift": 0.9184782608695652,
+          "retention": 0.7211538461538461,
+          "ece_clean": 0.047197358063185285,
+          "ece_shift": 0.07826142003752531,
+          "delta_ece": 0.03106406197434003,
+          "op_threshold": 0.6867911130427132,
+          "ci": {
+            "auc_clean": [
+              0.8001345830955598,
+              0.8795142123941492
+            ],
+            "auc_shift": [
+              0.7376516852970845,
+              0.8263900426828641
+            ],
+            "delta_auc": [
+              0.02323984210851568,
+              0.09044278692699427
+            ],
+            "delta_sens_at_spec": [
+              0.1013037554128714,
+              0.23119418625842897
+            ],
+            "referral_flip": [
+              0.15555555555555556,
+              0.2361111111111111
+            ],
+            "retention": [
+              0.6224433106575965,
+              0.8207804035120492
+            ],
+            "delta_ece": [
+              -0.014644567220862199,
+              0.0757308709590901
+            ]
+          }
+        }
+      }
+    },
+    "gemini_2p5_flash_fewshot_think": {
+      "model": "gemini_2p5_flash_fewshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_2p5_flash_fewshot_think",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.2111111111111111,
+          "auc_clean": 0.6220046936758894,
+          "auc_shift": 0.6092669219367589,
+          "delta_auc": 0.012737771739130488,
+          "sens_at_spec_clean": 0.09659090909090909,
+          "sens_at_spec_shift": 0.056818181818181816,
+          "delta_sens_at_spec": 0.03977272727272727,
+          "spec_realized_shift": 0.9456521739130435,
+          "retention": 0.5882352941176471,
+          "ece_clean": 0.2965555555555555,
+          "ece_shift": 0.3039722222222223,
+          "delta_ece": 0.0074166666666667935,
+          "op_threshold": 0.95,
+          "ci": {
+            "auc_clean": [
+              0.5650885271990741,
+              0.6805116520434632
+            ],
+            "auc_shift": [
+              0.5542116568143566,
+              0.6653849726555702
+            ],
+            "delta_auc": [
+              -0.02854859184904339,
+              0.05882774894001759
+            ],
+            "delta_sens_at_spec": [
+              -0.011768207282913164,
+              0.0903954802259887
+            ],
+            "referral_flip": [
+              0.16944444444444445,
+              0.25277777777777777
+            ],
+            "retention": [
+              0.2725757575757576,
+              1.0
+            ],
+            "delta_ece": [
+              -0.03859305555555558,
+              0.05506458333333324
+            ]
+          }
+        }
+      }
+    },
+    "gemini_2p5_flash_zeroshot_think": {
+      "model": "gemini_2p5_flash_zeroshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_2p5_flash_zeroshot_think",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.10833333333333334,
+          "auc_clean": 0.5712543231225298,
+          "auc_shift": 0.5180335968379447,
+          "delta_auc": 0.053220726284585074,
+          "sens_at_spec_clean": 0.10227272727272728,
+          "sens_at_spec_shift": 0.07954545454545454,
+          "delta_sens_at_spec": 0.022727272727272735,
+          "spec_realized_shift": 0.9130434782608695,
+          "retention": 0.7777777777777777,
+          "ece_clean": 0.3904722222222223,
+          "ece_shift": 0.4152222222222222,
+          "delta_ece": 0.02474999999999994,
+          "op_threshold": 0.15,
+          "ci": {
+            "auc_clean": [
+              0.517508841814888,
+              0.6245239438657406
+            ],
+            "auc_shift": [
+              0.4685707218867663,
+              0.5684073251597369
+            ],
+            "delta_auc": [
+              -0.015720438635699864,
+              0.11788350401911135
+            ],
+            "delta_sens_at_spec": [
+              -0.032258064516129045,
+              0.0783291058972733
+            ],
+            "referral_flip": [
+              0.08055555555555556,
+              0.14166666666666666
+            ],
+            "retention": [
+              0.39978260869565213,
+              1.0
+            ],
+            "delta_ece": [
+              -0.003447916666666803,
+              0.05289097222222231
+            ]
+          }
+        }
+      }
+    },
+    "gemini_2p5_pro_fewshot_think": {
+      "model": "gemini_2p5_pro_fewshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_2p5_pro_fewshot_think",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.2388888888888889,
+          "auc_clean": 0.6353909337944664,
+          "auc_shift": 0.6397603754940712,
+          "delta_auc": -0.004369441699604737,
+          "sens_at_spec_clean": 0.03977272727272727,
+          "sens_at_spec_shift": 0.056818181818181816,
+          "delta_sens_at_spec": -0.017045454545454544,
+          "spec_realized_shift": 0.9891304347826086,
+          "retention": 1.0,
+          "ece_clean": 0.3244444444444444,
+          "ece_shift": 0.32333333333333336,
+          "delta_ece": -0.0011111111111110628,
+          "op_threshold": 0.99,
+          "ci": {
+            "auc_clean": [
+              0.5761626529440828,
+              0.6911434304466813
+            ],
+            "auc_shift": [
+              0.5804860681114552,
+              0.6969980897985328
+            ],
+            "delta_auc": [
+              -0.04890865729409644,
+              0.04201011645936563
+            ],
+            "delta_sens_at_spec": [
+              -0.05917159763313609,
+              0.022108759078775832
+            ],
+            "referral_flip": [
+              0.19722222222222222,
+              0.2833333333333333
+            ],
+            "retention": [
+              0.5994117647058824,
+              1.0
+            ],
+            "delta_ece": [
+              -0.049286111111111086,
+              0.04829166666666657
+            ]
+          }
+        }
+      }
+    },
+    "gemini_2p5_pro_zeroshot_think": {
+      "model": "gemini_2p5_pro_zeroshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_2p5_pro_zeroshot_think",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.13333333333333333,
+          "auc_clean": 0.5147294960474308,
+          "auc_shift": 0.5439723320158103,
+          "delta_auc": -0.02924283596837951,
+          "sens_at_spec_clean": 0.14772727272727273,
+          "sens_at_spec_shift": 0.125,
+          "delta_sens_at_spec": 0.022727272727272735,
+          "spec_realized_shift": 0.9184782608695652,
+          "retention": 0.8461538461538461,
+          "ece_clean": 0.42208333333333337,
+          "ece_shift": 0.4398888888888889,
+          "delta_ece": 0.01780555555555552,
+          "op_threshold": 0.05,
+          "ci": {
+            "auc_clean": [
+              0.47095372941864166,
+              0.5586626190025883
+            ],
+            "auc_shift": [
+              0.50346442831353,
+              0.5833511086831074
+            ],
+            "delta_auc": [
+              -0.08690000308680089,
+              0.0311048385821542
+            ],
+            "delta_sens_at_spec": [
+              -0.04142628205128204,
+              0.09493759281521816
+            ],
+            "referral_flip": [
+              0.1,
+              0.16944444444444445
+            ],
+            "retention": [
+              0.4848240469208211,
+              1.0
+            ],
+            "delta_ece": [
+              -0.017835416666666812,
+              0.05472708333333328
+            ]
+          }
+        }
+      }
+    },
+    "gemini_3p6_flash_fewshot_think": {
+      "model": "gemini_3p6_flash_fewshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_3p6_flash_fewshot_think",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.1527777777777778,
+          "auc_clean": 0.6937530879446641,
+          "auc_shift": 0.6943089179841897,
+          "delta_auc": -0.0005558300395256399,
+          "sens_at_spec_clean": 0.26136363636363635,
+          "sens_at_spec_shift": 0.2556818181818182,
+          "delta_sens_at_spec": 0.005681818181818177,
+          "spec_realized_shift": 0.8967391304347826,
+          "retention": 0.9782608695652174,
+          "ece_clean": 0.26475,
+          "ece_shift": 0.28447222222222224,
+          "delta_ece": 0.019722222222222252,
+          "op_threshold": 0.88,
+          "ci": {
+            "auc_clean": [
+              0.6419732916895838,
+              0.744300866091442
+            ],
+            "auc_shift": [
+              0.6408086223869708,
+              0.7462088102758963
+            ],
+            "delta_auc": [
+              -0.043894202826216366,
+              0.03970808696085015
+            ],
+            "delta_sens_at_spec": [
+              -0.025165244561951683,
+              0.036369179600886925
+            ],
+            "referral_flip": [
+              0.11944444444444445,
+              0.18888888888888888
+            ],
+            "retention": [
+              0.8666666666666667,
+              1.0
+            ],
+            "delta_ece": [
+              -0.021388888888888957,
+              0.05748333333333336
+            ]
+          }
+        }
+      }
+    },
+    "gemini_3p6_flash_zeroshot_think": {
+      "model": "gemini_3p6_flash_zeroshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "gemini_3p6_flash_zeroshot_think",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.22777777777777777,
+          "auc_clean": 0.5958343626482213,
+          "auc_shift": 0.5642446887351779,
+          "delta_auc": 0.03158967391304346,
+          "sens_at_spec_clean": 0.18181818181818182,
+          "sens_at_spec_shift": 0.19318181818181818,
+          "delta_sens_at_spec": -0.011363636363636354,
+          "spec_realized_shift": 0.8858695652173914,
+          "retention": 1.0,
+          "ece_clean": 0.35552777777777766,
+          "ece_shift": 0.3338333333333332,
+          "delta_ece": -0.02169444444444446,
+          "op_threshold": 0.85,
+          "ci": {
+            "auc_clean": [
+              0.5392184183331012,
+              0.6506216049298981
+            ],
+            "auc_shift": [
+              0.5081069498069498,
+              0.6214211446235902
+            ],
+            "delta_auc": [
+              -0.025392761778413,
+              0.08568875097147373
+            ],
+            "delta_sens_at_spec": [
+              -0.0804831595829992,
+              0.052949008005569065
+            ],
+            "referral_flip": [
+              0.18611111111111112,
+              0.2722222222222222
+            ],
+            "retention": [
+              0.7428341013824885,
+              1.0
+            ],
+            "delta_ece": [
+              -0.06804861111111099,
+              0.031299305555555657
+            ]
+          }
+        }
+      }
+    },
+    "medgemma_4b_fewshot": {
+      "model": "medgemma_4b_fewshot",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "medgemma_4b_fewshot",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.0,
+          "auc_clean": 0.4882040513833991,
+          "auc_shift": 0.5240550889328062,
+          "delta_auc": -0.03585103754940705,
+          "sens_at_spec_clean": 0.0625,
+          "sens_at_spec_shift": 0.028409090909090908,
+          "delta_sens_at_spec": 0.03409090909090909,
+          "spec_realized_shift": 0.9836956521739131,
+          "retention": 0.45454545454545453,
+          "ece_clean": 0.4222400548759259,
+          "ece_shift": 0.4380552126231481,
+          "delta_ece": 0.015815157747222197,
+          "op_threshold": 0.12,
+          "ci": {
+            "auc_clean": [
+              0.43295845845001957,
+              0.5389969563413353
+            ],
+            "auc_shift": [
+              0.4725088167740544,
+              0.5719894223016821
+            ],
+            "delta_auc": [
+              -0.09077808661597916,
+              0.013016844738142372
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.06896551724137931
+            ],
+            "referral_flip": [
+              0.0,
+              0.0
+            ],
+            "retention": [
+              0.14261904761904762,
+              1.0
+            ],
+            "delta_ece": [
+              0.01158101851851852,
+              0.019436102531481477
+            ]
+          }
+        }
+      }
+    },
+    "medgemma_4b_zeroshot": {
+      "model": "medgemma_4b_zeroshot",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "medgemma_4b_zeroshot",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.0,
+          "auc_clean": 0.5387382658102768,
+          "auc_shift": 0.5536993577075099,
+          "delta_auc": -0.014961091897233048,
+          "sens_at_spec_clean": 0.05113636363636364,
+          "sens_at_spec_shift": 0.028409090909090908,
+          "delta_sens_at_spec": 0.02272727272727273,
+          "spec_realized_shift": 0.9945652173913043,
+          "retention": 0.5555555555555555,
+          "ece_clean": 0.46449999999999997,
+          "ece_shift": 0.4686388888888888,
+          "delta_ece": 0.004138888888888859,
+          "op_threshold": 0.05,
+          "ci": {
+            "auc_clean": [
+              0.4937616624883604,
+              0.5844551662255305
+            ],
+            "auc_shift": [
+              0.5111023249602309,
+              0.6018485588817418
+            ],
+            "delta_auc": [
+              -0.06753771547179659,
+              0.03542766309167657
+            ],
+            "delta_sens_at_spec": [
+              -0.005377805049088361,
+              0.0502863913125353
+            ],
+            "referral_flip": [
+              0.0,
+              0.0
+            ],
+            "retention": [
+              0.16666666666666669,
+              1.0
+            ],
+            "delta_ece": [
+              0.001388888888888884,
+              0.007167361111111043
+            ]
+          }
+        }
+      }
+    },
+    "mirage": {
+      "model": "mirage",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "mirage",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.4722222222222222,
+          "auc_clean": 0.700963438735178,
+          "auc_shift": 0.6572690217391305,
+          "delta_auc": 0.04369441699604748,
+          "sens_at_spec_clean": 0.2556818181818182,
+          "sens_at_spec_shift": 0.9772727272727273,
+          "delta_sens_at_spec": -0.7215909090909092,
+          "spec_realized_shift": 0.07065217391304347,
+          "retention": 1.0,
+          "ece_clean": 0.040976318987647115,
+          "ece_shift": 0.34264517248545434,
+          "delta_ece": 0.30166885349780725,
+          "op_threshold": 0.6806311838605593,
+          "ci": {
+            "auc_clean": [
+              0.6478599566758056,
+              0.757824596266173
+            ],
+            "auc_shift": [
+              0.5999218749916437,
+              0.7148415666435022
+            ],
+            "delta_auc": [
+              0.02044668189631897,
+              0.06873784888847079
+            ],
+            "delta_sens_at_spec": [
+              -0.7870004297378599,
+              -0.6480285465172603
+            ],
+            "referral_flip": [
+              0.42215277777777777,
+              0.5222916666666666
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.2116426289008509,
+              0.3167313673700516
+            ]
+          }
+        }
+      }
+    },
+    "mirage_ft": {
+      "model": "mirage_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "mirage_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.39444444444444443,
+          "auc_clean": 0.7359189723320159,
+          "auc_shift": 0.737694540513834,
+          "delta_auc": -0.0017755681818181213,
+          "sens_at_spec_clean": 0.35795454545454547,
+          "sens_at_spec_shift": 0.7443181818181818,
+          "delta_sens_at_spec": -0.3863636363636363,
+          "spec_realized_shift": 0.6141304347826086,
+          "retention": 1.0,
+          "ece_clean": 0.12131791328105868,
+          "ece_shift": 0.29047158425673836,
+          "delta_ece": 0.16915367097567968,
+          "op_threshold": 0.8114878714084628,
+          "ci": {
+            "auc_clean": [
+              0.6832048389907766,
+              0.7849014598231708
+            ],
+            "auc_shift": [
+              0.6843107388728578,
+              0.7846712473497097
+            ],
+            "delta_auc": [
+              -0.022927685927617184,
+              0.02121680390357233
+            ],
+            "delta_sens_at_spec": [
+              -0.4615384615384615,
+              -0.32021328717010716
+            ],
+            "referral_flip": [
+              0.3388888888888889,
+              0.44166666666666665
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.10267027231592998,
+              0.2180054841981554
+            ]
+          }
+        }
+      }
+    },
+    "openai_5p6_sol_fewshot_think": {
+      "model": "openai_5p6_sol_fewshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "openai_5p6_sol_fewshot_think",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.2388888888888889,
+          "auc_clean": 0.6681231472332017,
+          "auc_shift": 0.6802587697628458,
+          "delta_auc": -0.012135622529644174,
+          "sens_at_spec_clean": 0.26704545454545453,
+          "sens_at_spec_shift": 0.1590909090909091,
+          "delta_sens_at_spec": 0.10795454545454544,
+          "spec_realized_shift": 0.9184782608695652,
+          "retention": 0.5957446808510638,
+          "ece_clean": 0.23305555555555557,
+          "ece_shift": 0.25300000000000006,
+          "delta_ece": 0.019944444444444487,
+          "op_threshold": 0.87,
+          "ci": {
+            "auc_clean": [
+              0.6143913327237756,
+              0.7267663375973303
+            ],
+            "auc_shift": [
+              0.6301340552778237,
+              0.7337871771265272
+            ],
+            "delta_auc": [
+              -0.06116238235151046,
+              0.03729790918430698
+            ],
+            "delta_sens_at_spec": [
+              0.04519139211578747,
+              0.1716180371352785
+            ],
+            "referral_flip": [
+              0.19444444444444445,
+              0.2833333333333333
+            ],
+            "retention": [
+              0.42,
+              0.8043610816542947
+            ],
+            "delta_ece": [
+              -0.027336111111111127,
+              0.07247916666666665
+            ]
+          }
+        }
+      }
+    },
+    "openai_5p6_sol_zeroshot_think": {
+      "model": "openai_5p6_sol_zeroshot_think",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "openai_5p6_sol_zeroshot_think",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.08055555555555556,
+          "auc_clean": 0.6306509387351777,
+          "auc_shift": 0.6349277420948618,
+          "delta_auc": -0.004276803359684056,
+          "sens_at_spec_clean": 0.17045454545454544,
+          "sens_at_spec_shift": 0.125,
+          "delta_sens_at_spec": 0.04545454545454544,
+          "spec_realized_shift": 0.9239130434782609,
+          "retention": 0.7333333333333334,
+          "ece_clean": 0.30741666666666667,
+          "ece_shift": 0.32386111111111116,
+          "delta_ece": 0.016444444444444484,
+          "op_threshold": 0.22,
+          "ci": {
+            "auc_clean": [
+              0.5753194478946715,
+              0.6883072141617063
+            ],
+            "auc_shift": [
+              0.5740743915318304,
+              0.6920774381200432
+            ],
+            "delta_auc": [
+              -0.06708825549516796,
+              0.06440641080302793
+            ],
+            "delta_sens_at_spec": [
+              -0.0168587206332993,
+              0.10677189734422879
+            ],
+            "referral_flip": [
+              0.05555555555555555,
+              0.1111111111111111
+            ],
+            "retention": [
+              0.46336772983114444,
+              1.0
+            ],
+            "delta_ece": [
+              -0.012420833333333355,
+              0.03889513888888902
+            ]
+          }
+        }
+      }
+    },
+    "qwen3vl_8b_fewshot": {
+      "model": "qwen3vl_8b_fewshot",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "few-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "qwen3vl_8b_fewshot",
+          "representation": "bscan",
+          "adaptation": "few-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.016666666666666666,
+          "auc_clean": 0.5357892786561265,
+          "auc_shift": 0.5356040019762845,
+          "delta_auc": 0.00018527667984191698,
+          "sens_at_spec_clean": 0.0,
+          "sens_at_spec_shift": 0.0,
+          "delta_sens_at_spec": 0.0,
+          "spec_realized_shift": 1.0,
+          "retention": NaN,
+          "ece_clean": 0.3798611111111111,
+          "ece_shift": 0.3995833333333332,
+          "delta_ece": 0.019722222222222086,
+          "op_threshold": 0.95,
+          "ci": {
+            "auc_clean": [
+              0.4924715981122379,
+              0.5820702802193676
+            ],
+            "auc_shift": [
+              0.4856807731368956,
+              0.5881862101341017
+            ],
+            "delta_auc": [
+              -0.04412488695708679,
+              0.0493890849186484
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.0
+            ],
+            "referral_flip": [
+              0.005555555555555556,
+              0.030555555555555555
+            ],
+            "delta_ece": [
+              0.005833333333333355,
+              0.034861111111111065
+            ]
+          }
+        }
+      }
+    },
+    "qwen3vl_8b_zeroshot": {
+      "model": "qwen3vl_8b_zeroshot",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "zero-shot",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "qwen3vl_8b_zeroshot",
+          "representation": "bscan",
+          "adaptation": "zero-shot",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.18611111111111112,
+          "auc_clean": 0.4624197134387351,
+          "auc_shift": 0.42463871047430823,
+          "delta_auc": 0.03778100296442688,
+          "sens_at_spec_clean": 0.0,
+          "sens_at_spec_shift": 0.0,
+          "delta_sens_at_spec": 0.0,
+          "spec_realized_shift": 1.0,
+          "retention": NaN,
+          "ece_clean": 0.5097222222222222,
+          "ece_shift": 0.5075000000000001,
+          "delta_ece": -0.0022222222222221255,
+          "op_threshold": 0.95,
+          "ci": {
+            "auc_clean": [
+              0.42475794129688454,
+              0.5005473055089362
+            ],
+            "auc_shift": [
+              0.37359249722498694,
+              0.47639545401365013
+            ],
+            "delta_auc": [
+              -0.00709452126809509,
+              0.08617136931987389
+            ],
+            "delta_sens_at_spec": [
+              0.0,
+              0.0
+            ],
+            "referral_flip": [
+              0.14722222222222223,
+              0.23055555555555557
+            ],
+            "delta_ece": [
+              -0.04139236111111125,
+              0.04249999999999987
+            ]
+          }
+        }
+      }
+    },
+    "resnet50": {
+      "model": "resnet50",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "resnet50",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.25833333333333336,
+          "auc_clean": 0.8248208992094862,
+          "auc_shift": 0.745306324110672,
+          "delta_auc": 0.07951457509881421,
+          "sens_at_spec_clean": 0.5340909090909091,
+          "sens_at_spec_shift": 0.3977272727272727,
+          "delta_sens_at_spec": 0.13636363636363635,
+          "spec_realized_shift": 0.8858695652173914,
+          "retention": 0.7446808510638298,
+          "ece_clean": 0.07480708795921671,
+          "ece_shift": 0.1171426767086036,
+          "delta_ece": 0.04233558874938688,
+          "op_threshold": 0.7532244958629289,
+          "ci": {
+            "auc_clean": [
+              0.7804124969564281,
+              0.8634284581278905
+            ],
+            "auc_shift": [
+              0.6913596450195497,
+              0.7943605649674758
+            ],
+            "delta_auc": [
+              0.03539174038172918,
+              0.12640967716695783
+            ],
+            "delta_sens_at_spec": [
+              0.05554788213627995,
+              0.21392338137103836
+            ],
+            "referral_flip": [
+              0.21666666666666667,
+              0.30277777777777776
+            ],
+            "retention": [
+              0.625,
+              0.8877834467120181
+            ],
+            "delta_ece": [
+              -0.0026295871161319865,
+              0.09228933359165573
+            ]
+          }
+        }
+      }
+    },
+    "resnet50_ft": {
+      "model": "resnet50_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "resnet50_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.39444444444444443,
+          "auc_clean": 0.8325716403162056,
+          "auc_shift": 0.8268126235177866,
+          "delta_auc": 0.005759016798418948,
+          "sens_at_spec_clean": 0.5681818181818182,
+          "sens_at_spec_shift": 0.875,
+          "delta_sens_at_spec": -0.30681818181818177,
+          "spec_realized_shift": 0.5543478260869565,
+          "retention": 1.0,
+          "ece_clean": 0.06814759345207777,
+          "ece_shift": 0.15419659937421482,
+          "delta_ece": 0.08604900592213705,
+          "op_threshold": 0.5260858893394472,
+          "ci": {
+            "auc_clean": [
+              0.7848256103073339,
+              0.8738145673084494
+            ],
+            "auc_shift": [
+              0.7854172048188218,
+              0.8660858299289176
+            ],
+            "delta_auc": [
+              -0.028561757418075647,
+              0.0411741582442603
+            ],
+            "delta_sens_at_spec": [
+              -0.3735647972716938,
+              -0.23635342185903982
+            ],
+            "referral_flip": [
+              0.344375,
+              0.4444444444444444
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.0032602951642022406,
+              0.13222253227360647
+            ]
+          }
+        }
+      }
+    },
+    "retfound": {
+      "model": "retfound",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "linear-probe",
+      "n": 1200,
+      "n_eval": 360,
+      "glaucoma_rate": 0.5,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "retfound",
+          "representation": "bscan",
+          "adaptation": "linear-probe",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.3277777777777778,
+          "auc_clean": 0.844923418972332,
+          "auc_shift": 0.7835041996047432,
+          "delta_auc": 0.06141921936758887,
+          "sens_at_spec_clean": 0.625,
+          "sens_at_spec_shift": 0.8522727272727273,
+          "delta_sens_at_spec": -0.2272727272727273,
+          "spec_realized_shift": 0.5217391304347826,
+          "retention": 1.0,
+          "ece_clean": 0.03960220067863111,
+          "ece_shift": 0.24802728841943994,
+          "delta_ece": 0.20842508774080884,
+          "op_threshold": 0.6484920739725738,
+          "ci": {
+            "auc_clean": [
+              0.8008158727772743,
+              0.8841162405511266
+            ],
+            "auc_shift": [
+              0.7356735495038794,
+              0.8293338672518549
+            ],
+            "delta_auc": [
+              0.02591602761531452,
+              0.09724133849487637
+            ],
+            "delta_sens_at_spec": [
+              -0.29093973442288046,
+              -0.1647040889526542
+            ],
+            "referral_flip": [
+              0.2777777777777778,
+              0.375
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.1296799323229064,
+              0.23026835733721507
+            ]
+          }
+        }
+      }
+    },
+    "retfound_ft": {
+      "model": "retfound_ft",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "fine-tune",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "retfound_ft",
+          "representation": "bscan",
+          "adaptation": "fine-tune",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.14166666666666666,
+          "auc_clean": 0.8466681077075099,
+          "auc_shift": 0.8540174160079052,
+          "delta_auc": -0.007349308300395263,
+          "sens_at_spec_clean": 0.6647727272727273,
+          "sens_at_spec_shift": 0.7556818181818182,
+          "delta_sens_at_spec": -0.09090909090909094,
+          "spec_realized_shift": 0.8097826086956522,
+          "retention": 1.0,
+          "ece_clean": 0.07161407023668293,
+          "ece_shift": 0.07684810188495449,
+          "delta_ece": 0.0052340316482715615,
+          "op_threshold": 0.594865369796753,
+          "ci": {
+            "auc_clean": [
+              0.803102306669888,
+              0.8889557351890325
+            ],
+            "auc_shift": [
+              0.8145395009566173,
+              0.8923420158679973
+            ],
+            "delta_auc": [
+              -0.026339509547886938,
+              0.010135207672448176
+            ],
+            "delta_sens_at_spec": [
+              -0.13957592339261277,
+              -0.04242183742183737
+            ],
+            "referral_flip": [
+              0.10555555555555556,
+              0.17777777777777778
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              -0.05050361611401768,
+              0.04550192211133738
+            ]
+          }
+        }
+      }
+    },
+    "supervised": {
+      "model": "supervised",
+      "axis": "bscan_appearance_stress",
+      "adaptation": "supervised",
+      "n": 360,
+      "n_eval": 360,
+      "glaucoma_rate": 0.4888888888888889,
+      "levels": [
+        1.0
+      ],
+      "per_level": {
+        "1.0": {
+          "model": "supervised",
+          "representation": "bscan",
+          "adaptation": "supervised",
+          "spec_target": 0.9,
+          "n": 360,
+          "n_pos": 176,
+          "n_neg": 184,
+          "referral_flip": 0.2722222222222222,
+          "auc_clean": 0.7882905138339922,
+          "auc_shift": 0.7717391304347826,
+          "delta_auc": 0.016551383399209585,
+          "sens_at_spec_clean": 0.4602272727272727,
+          "sens_at_spec_shift": 0.7840909090909091,
+          "delta_sens_at_spec": -0.32386363636363635,
+          "spec_realized_shift": 0.6467391304347826,
+          "retention": 1.0,
+          "ece_clean": 0.04231614555335709,
+          "ece_shift": 0.14553196239802574,
+          "delta_ece": 0.10321581684466866,
+          "op_threshold": 0.6183292806148529,
+          "ci": {
+            "auc_clean": [
+              0.740314683065027,
+              0.8325275225099785
+            ],
+            "auc_shift": [
+              0.7216962649123881,
+              0.8213738427288579
+            ],
+            "delta_auc": [
+              -0.009528397854887781,
+              0.04259984112621937
+            ],
+            "delta_sens_at_spec": [
+              -0.3959900266206741,
+              -0.2546503069687287
+            ],
+            "referral_flip": [
+              0.22777777777777777,
+              0.3194444444444444
+            ],
+            "retention": [
+              1.0,
+              1.0
+            ],
+            "delta_ece": [
+              0.018119948970464348,
+              0.13906348765258575
+            ]
+          }
+        }
+      }
+    }
+  }
+}

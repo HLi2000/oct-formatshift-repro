@@ -1,0 +1,173 @@
+{
+  "meta": {
+    "n_gf": 1000,
+    "n_gdp": 1000,
+    "pair": "cirrus_to_topcon",
+    "gf_glaucoma_rate": 0.533,
+    "gdp_glaucoma_rate": 0.443
+  },
+  "V1a_realism": {
+    "cirrus_to_spectralis": {
+      "pair": "cirrus_to_spectralis",
+      "sector": "global",
+      "reproduces": true,
+      "bias_equivalent": true,
+      "loa_ok": true,
+      "target_bias": 1.94,
+      "synthetic_bias": 1.9610900406349498,
+      "tost_p": 1.825938403491606e-23,
+      "synthetic_loa_half": 7.343675599802447,
+      "published_loa_half": 7.683199999999999,
+      "loa_ratio": 0.9558095064299312,
+      "extrapolated": false
+    },
+    "cirrus_to_topcon": {
+      "pair": "cirrus_to_topcon",
+      "sector": "global",
+      "reproduces": true,
+      "bias_equivalent": true,
+      "loa_ok": true,
+      "target_bias": 10.876354940055288,
+      "synthetic_bias": 10.444365660047454,
+      "tost_p": 0.0024162148011966757,
+      "synthetic_loa_half": 21.68981037989012,
+      "published_loa_half": 21.56,
+      "loa_ratio": 1.0060208896052931,
+      "extrapolated": true
+    },
+    "cirrus_to_rtvue": {
+      "pair": "cirrus_to_rtvue",
+      "sector": "global",
+      "reproduces": true,
+      "bias_equivalent": true,
+      "loa_ok": true,
+      "target_bias": 12.075282022052374,
+      "synthetic_bias": 11.994821528406833,
+      "tost_p": 7.811993802768411e-05,
+      "synthetic_loa_half": 19.710879022344198,
+      "published_loa_half": 17.64,
+      "loa_ratio": 1.117396769974161,
+      "extrapolated": false
+    }
+  },
+  "V1a_structural": {
+    "pair": "cirrus_to_spectralis",
+    "reproduces": true,
+    "bias_reproduced": true,
+    "loa_reproduced": true,
+    "sector_structure_superior_inferior_wider": true,
+    "spread_survives_eye_averaging": true,
+    "published_bias_um": 1.94,
+    "deployed_global_bias_um": 2.0852674574648153,
+    "published_loa_half_um": 7.683199999999999,
+    "deployed_global_loa_half_um": 7.760969163333269,
+    "loa_ratio": 1.0101219756524975,
+    "tost_p": 1.8818081772028786e-16,
+    "extrapolated": false,
+    "sector_loa_half_um": {
+      "s": 9.007775836715515,
+      "i": 9.109002227765135,
+      "n": 6.9804344040044155,
+      "t": 6.911842625292047
+    },
+    "note": "the DEPLOYED map transform's per-eye Bland-Altman vs published \u2014 extends the scalar V1a round-trip to the transform AS APPLIED to maps + validates the anatomy-coupled sector structure. Global magnitude calibrated (Warner \u03c3); sector profile mechanism-motivated."
+  },
+  "V1b_retouch": null,
+  "V2_read_gap": {
+    "raw_wasserstein_um": 2.4571597033213504,
+    "harmonized_wasserstein_um": 3.116946636529022,
+    "gap_closed_frac": -0.2685160969862217,
+    "raw_mean_shift_um": 1.8474940911882385,
+    "harmonized_mean_shift_um": 1.5062936786451075,
+    "raw_within_mdc_floor": true,
+    "n_gf_test": 300,
+    "n_gdp": 1000,
+    "note": "the real same-vendor (Cirrus) GF->GDP read gap is WITHIN the ~4 um MDC floor -> already share-safe, no device offset to remove; forcing ComBat here OVER-CORRECTS a case-mix difference (Leek 2010) \u2014 the two-regime caveat. The clean device result is on the synthetic axis + certificate; a real vendor offset needs GLEAM/GOALS (Eyened track)."
+  },
+  "V2_transfer": {
+    "baseline": {
+      "id_auc": 0.6865757633954293,
+      "ood_auc": 0.7342178957734722,
+      "drop": -0.047642132378042934
+    },
+    "dr_calibrated": {
+      "id_auc": 0.6372191280967928,
+      "ood_auc": 0.6889090621719871,
+      "drop": -0.05168993407519429
+    },
+    "dr_generic": {
+      "id_auc": 0.6692913385826772,
+      "ood_auc": 0.6859384561764694,
+      "drop": -0.016647117593792227
+    },
+    "dr_closes_gap": false,
+    "calibrated_beats_generic": true,
+    "note": "GF->GDP is same-vendor (Cirrus): a vendor-calibrated transform is not expected to beat generic here; the calibrated>generic test needs a real vendor shift (GLEAM/GOALS via Eyened)."
+  },
+  "V3_monotonicity": {
+    "rows": [
+      {
+        "level": 0.0,
+        "distance": 0.0,
+        "read_drift": 0.0,
+        "sys_drift": 0.0,
+        "flip_rate": 0.0,
+        "harm_sys_drift": 3.185764626472655
+      },
+      {
+        "level": 0.25,
+        "distance": 0.11825175377665811,
+        "read_drift": 4.8522955147789855,
+        "sys_drift": 2.3545350186038085,
+        "flip_rate": 0.0375,
+        "harm_sys_drift": 3.2779030184761497
+      },
+      {
+        "level": 0.5,
+        "distance": 0.23396617200495676,
+        "read_drift": 9.41285319490262,
+        "sys_drift": 5.064391198632583,
+        "flip_rate": 0.09,
+        "harm_sys_drift": 3.252556472923138
+      },
+      {
+        "level": 0.75,
+        "distance": 0.3408514203466872,
+        "read_drift": 14.121264903955861,
+        "sys_drift": 8.385878242785726,
+        "flip_rate": 0.1425,
+        "harm_sys_drift": 3.229467169504759
+      },
+      {
+        "level": 1.0,
+        "distance": 0.4165533436799443,
+        "read_drift": 18.55104167648202,
+        "sys_drift": 10.896841660319058,
+        "flip_rate": 0.1575,
+        "harm_sys_drift": 3.2001647423278303
+      }
+    ],
+    "spearman_distance_vs_drift": 0.9999999999999999,
+    "spearman_distance_vs_flip": 0.9999999999999999,
+    "harmonizer_flattens": true
+  },
+  "V6_cross_vendor": {
+    "reference": "spectralis",
+    "per_vendor": {
+      "spectralis": {
+        "n": 60,
+        "global_px": 45.81378808243726,
+        "shape_agreement_vs_ref": 1.0000000000000002,
+        "per_eye_shape_agreement_median": 0.5370603553605995
+      },
+      "topcon": {
+        "n": 60,
+        "global_px": 18.617031490015357,
+        "shape_agreement_vs_ref": 0.9282324875527922,
+        "per_eye_shape_agreement_median": 0.4263696418630685
+      }
+    },
+    "min_shape_agreement": 0.9282324875527922,
+    "note": "scale-invariant SHAPE agreement ONLY (the double-hump aligns \u2192 the vendors measure the same anatomy, segmenter held constant). \u26a0 NOT a model-benchmark: different raw image types + cohorts, GOALS unlabeled, \u00b5m scale uncertain \u2192 any magnitude/referral read is non-identified (\u00a70). This CORROBORATES the synthetic-axis device result; models are benchmarked on the synthetic axis + real single-vendor GLEAM detection. A real cross-vendor DETECTION benchmark needs same-eye cross-device data (AI-READI, deferred)."
+  }
+}

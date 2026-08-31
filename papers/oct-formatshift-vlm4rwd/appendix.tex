@@ -1,0 +1,309 @@
+% ======================================================================================
+%  Appendix
+% ======================================================================================
+\section{Experimental setup}
+\label{app:setup}
+
+\paragraph{Encoders.} Foundation models (RETFound, MIRAGE, DINOv2) and CNNs (ResNet-50, ConvNeXt-T/B/L, the
+98k-parameter SmallCNN) are frozen feature extractors with a linear head, or fine-tuned end-to-end (``FT'').
+\emph{Linear probe:} \texttt{StandardScaler} + $\ell_2$ logistic regression, \texttt{LogisticRegressionCV}
+($C\in\{0.01,0.05,0.2,1.0\}$, 3-fold, ROC-AUC, \texttt{max\_iter}=5000; small-$n$ fallback $C{=}0.05$), fit on clean
+training eyes (seed-0). Features: DINOv2 = \texttt{[CLS]}\,$\oplus$\,mean patch tokens (registers excluded) at
+$224^2$; RETFound = global-avg-pool + \texttt{fc\_norm} at $224^2$ (ImageNet normalization); MIRAGE = encoder last
+token at native $512^2$ (unit-scaled, not ImageNet-normed); ResNet/ConvNeXt = global-avg-pool. \emph{Fine-tune:}
+AdamW (weight decay 0.05), 50 epochs, batch 32, layer-wise LR decay (ConvNeXt 0.9 / ResNet 1.0 / ViT 0.65),
+base-LR $5\times10^{-4}$/$10^{-3}$/$5\times10^{-3}$ linearly scaled by batch, warmup then cosine to $10^{-6}$,
+class-weighted cross-entropy with label-smoothing 0.1, \texttt{RandomResizedCrop}(0.5--1.0)+HFlip+RandomErasing(0.25)
+at $224^2$, mixed precision, early stop (patience 12) on validation AUC. \emph{SmallCNN} ($\sim$98k params):
+four \texttt{Conv}$3{\times}3$--GroupNorm--ReLU--MaxPool blocks (16/32/64/128) $\rightarrow$ global-avg-pool
+$\rightarrow$ linear logit; Adam ($10^{-3}$, wd $10^{-4}$), class-weighted BCE. It is trained end-to-end from scratch
+on each scored axis (GLEAM B-scans; Harvard-GDP thickness maps), on the same seed-0 split as the other readers. It is
+never exposed to the test shift.
+
+\paragraph{VLMs.} All seven VLMs receive byte-identical eyes, shifts (per-eye seeds $3000{+}e$, $4000{+}e$), few-shot
+exemplars (seed $+11$) and prompts from a single shared axis builder, are queried greedily (one
+sample) for a verbalized probability \citep{tian2023calibration}, and are thresholded at the clean-data
+90\%-specificity operating point. Exact model IDs and inference settings are in Table~\ref{tab:models}. The verbatim
+prompts, few-shot construction and probability parsing are in App.~\ref{app:prompts}.
+
+\paragraph{Statistics.} Confidence intervals are eye-level percentile bootstraps (2000 resamples; the eye is the
+resampling unit) \citep{diciccio1996bootstrap}. ECE uses 10 equal-width confidence bins \citep{guo2017calibration}. The operating point (target specificity 0.90) is fixed on
+clean negatives and reused on shifted scores; $\Delta$sens@spec and spec@shift are read there, while decision-flip
+is the change in the fixed $0.5$ clinical call (refer / do-not-refer). Both capture decision movement at a
+deployed threshold. Sample sizes: $n{=}360$ eyes (B-scan axis), $n{=}300$ eyes (thickness-map
+axis).
+
+\paragraph{Compute.} The open-weights VLMs and all fine-tuning run on a single Colab GPU (A100-40GB or L4), bf16,
+\texttt{device\_map=auto}, batched greedy generation. The closed API configurations (Gemini, GPT-5.6 Sol, Claude) are CPU-only
+clients. Reproducing the tables and figures from the released per-eye outputs requires no GPU.
+
+\section{Prompts and elicitation}
+\label{app:prompts}
+
+Elicitation is a single verbalized referral probability per eye \citep{tian2023calibration}, the score common to
+every vendor, since the closed models expose no logprobs. Prompts are byte-identical across models on a given axis.
+
+\paragraph{B-scan axis.} System: \emph{``You are grading circumpapillary OCT B-scans for glaucoma. Each
+image is a cross-sectional retinal scan taken in a ring around the optic nerve head. Glaucoma shows as thinning/loss
+of the retinal nerve fibre layer (RNFL) and neuroretinal rim.''} Query: \emph{``Now assess THIS new B-scan. Return
+JSON: \texttt{glaucoma\_referral\_probability} (0--1, your calibrated probability that this eye should be referred
+for glaucoma), \texttt{rationale} (one short sentence).''}
+
+\paragraph{Thickness-map axis.} System: \emph{``You are grading en-face retinal nerve fibre layer (RNFL) THICKNESS
+MAPS for glaucoma. Each image is a colour-coded map of RNFL thickness around the optic disc: warm colours = THICK,
+cool colours = THIN. Glaucoma shows as THINNING---loss of the bright superior and inferior nerve-fibre bundles (the
+`double-hump'), a wedge defect or diffuse darkening.''} Query: as above with ``RNFL thickness map''.
+
+\paragraph{Few-shot.} $k{=}6$ labeled exemplars, drawn only from the training pool (leakage guard), balanced:
+B-scan axis severity-graded (3 healthy + one each early/moderate/advanced); map axis binary (3 glaucoma + 3
+healthy). Selection RNG is \texttt{seed}$+11$ and the exemplar set is identical across models. The few-shot preamble
+adds \emph{``Below are LABELLED reference images in this exact format so you can calibrate''}; each exemplar is
+captioned with its label before (API/open configurations) or after (Gemini) its image.
+
+\paragraph{Probability parsing.} We read \texttt{glaucoma\_referral\_probability} from the JSON (regex fallback on
+the first such field, clipped to $[0,1]$); parse failures are retried (up to 5, exponential backoff) and, only if
+still failing, imputed as 0.5 (never cached). Imputation is rare for the frontier configurations but non-negligible
+for the small-model configurations that collapse to a near-constant output (e.g.\ Qwen3-VL-8B on the map), where it
+biases ECE and AUC toward chance and reinforces the near-chance reading of those configurations. An alternative boolean-verdict schema
+maps $p{=}\text{conf}$ if glaucoma else $1{-}\text{conf}$. We use the probability schema throughout for parity.
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Model card.} Exact identifiers, size and inference settings. VLMs are queried $N{=}1$,
+  greedily. Reasoning/thinking is enabled where supported (``high''/dynamic). Temperature is omitted for the
+  reasoning API models (they reject it) and set to 0 for Gemini.}
+  \label{tab:models}
+  \small
+  \renewcommand{\arraystretch}{0.9}
+  \setlength{\tabcolsep}{4pt}
+  \begin{tabular}{lll}
+    \toprule
+    Model & Identifier & Params / settings \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Vision-language models (prompted)}} \\
+    \midrule
+    Gemini 2.5 Flash / Pro & \texttt{gemini-2.5-flash}, \texttt{-pro} & temp 0, thinking budget \\
+    Gemini 3.6 Flash & \texttt{gemini-3.6-flash} & temp 0, thinking level high \\
+    GPT-5.6 Sol & \texttt{gpt-5.6-sol} & reasoning=high, no temp \\
+    Claude Opus~5 & \texttt{anthropic/claude-opus-5} & reasoning=high \\
+    Qwen3-VL-8B & \texttt{Qwen/Qwen3-VL-8B-Instruct} & 8B, bf16, greedy, 192 tok \\
+    MedGemma-1.5-4B & \texttt{google/medgemma-1.5-4b-it} & 4B, bf16, greedy, 192 tok \\
+    \midrule
+    \multicolumn{3}{l}{\textit{Foundation models / CNNs (frozen probe + fine-tune)}} \\
+    \midrule
+    DINOv2 (ViT-L/14, reg.) & \texttt{vit\_large\_patch14\_reg4\_dinov2} & $\sim$300M, $224^2$ \\
+    RETFound (ViT-L/16) & \texttt{RETFound\_mae\_natureOCT} & $\sim$300M, $224^2$ \\
+    MIRAGE-Base (ViT-B) & \texttt{j-morano/MIRAGE-Base} & $\sim$86M, $512^2$ \\
+    ResNet-50 & \texttt{resnet50.a1\_in1k} & $\sim$26M \\
+    ConvNeXt-T/B/L & \texttt{convnext\_\{t,b,l\}.fb\_in1k} & $\sim$29/88/197M \\
+    SmallCNN & from scratch & $\sim$98k \\
+    \bottomrule
+  \end{tabular}
+\end{table}
+
+\section{Datasets}
+\label{app:datasets}
+
+All data are public or registered-access research datasets. No new patient data were collected. Splits are
+eye-level (one eye per subject where applicable), seed-0, 55/15/30 train/val/test.
+
+\begin{table}[t]
+  \centering
+  \caption{\textbf{Datasets.} Two are scored (thickness-map and B-scan axes). Two supply the real-data validation
+  (cross-vendor anatomy; per-vendor speckle calibration).}
+  \label{tab:datasets}
+  \small
+  \setlength{\tabcolsep}{4pt}
+  \resizebox{\linewidth}{!}{%
+  \begin{tabular}{lllll}
+    \toprule
+    Dataset & Role & Modality (region) & $n$ (tr/val/test) & Label / access \\
+    \midrule
+    Harvard-GDP & thickness-map axis (scored) & Cirrus RNFLT maps $225^2$ (disc) & 550/150/300 & VF-derived; CC BY-NC-ND 4.0 \\
+    GLEAM & B-scan axis (scored) & Spectralis circumpapillary B-scans & 660/180/360 & clinical (4-class$\to$binary) \\
+    GLEAM\,/\,GOALS & cross-vendor validity & Spectralis + Topcon B-scans $\to$ cpRNFL & 60+60 & single segmenter \citep{driessen2024} \\
+    RETOUCH & speckle calibration & Cirrus/Spec/Topcon macular B-scans & $\sim$30/vendor & public challenge \\
+    \bottomrule
+  \end{tabular}}
+\end{table}
+
+Harvard-GDP labels are the \texttt{glaucoma} field per eye \citep{luo2023harvardgdp}; GLEAM is single-center
+\citep{gleam2026}, a 4-class severity label binarized to refer/do-not-refer. The cross-vendor validity row is a
+\emph{derived measurement}, not a released dataset: we run the device-agnostic ONH-OCT segmenter of
+\citet{driessen2024} on GLEAM Spectralis and GOALS Topcon \citep{goals2022} B-scans to produce cpRNFL
+profiles, holding the segmentation source constant so the residual cross-vendor difference is imaging plus cohort,
+not segmentation. RETOUCH \citep{bogunovic2019retouch} is used only to measure real per-vendor display-speckle
+contrast (Cirrus 0.365 $>$ Topcon 0.184 $>$ Spectralis 0.148), not scored. It is macular data, a proxy for the disc. No
+public same-eye cross-scanner labeled disc-OCT set exists, which is why the primary shift is a calibrated same-eye
+transform (\S\ref{app:validity}).
+
+\section{Reliability diagrams (calibration detail)}
+\label{app:reliability}
+
+Fig.~\ref{fig:reliability} shows the ECE gap of \S\ref{sec:findings} (F1) is genuine overconfidence, not a
+binning artifact, and systematic across vendors: every frontier-VLM configuration (Gemini, GPT-5.6 Sol, Claude Opus~5,
+few-shot) lies below the diagonal (confidence exceeding accuracy) while the OCT/generic FMs and ImageNet CNNs
+track it. Vendor-dependence is visible (Gemini furthest below, Claude closest). The FM/CNN per-eye probabilities here
+are recomputed from cached encoder features with the same frozen probe (\S\ref{app:setup}), and the recomputed ECE
+matches Table~\ref{tab:main}.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.55\linewidth]{figures/figA3_reliability.pdf}
+  \caption{\textbf{Reliability diagram} (B-scan axis, few-shot), one line per configuration: empirical accuracy vs.\ mean
+  predicted confidence in five equal-count bins for readability (dotted = perfect calibration; the ECE metric
+  itself uses 10 equal-width bins, \S\ref{app:setup}). Every frontier VLM
+  (Gemini 3.6 Flash, GPT-5.6 Sol, Claude Opus~5; one warm color, distinguished by line style) lies below the diagonal
+  (overconfident), most for Gemini and least for Claude, whereas the OCT/generic FMs and ImageNet CNNs (cool
+  colors) track it (well-calibrated).}
+  \label{fig:reliability}
+\end{figure}
+
+\paragraph{Net calibration error and post-hoc calibration.} The miscalibration is directional and largely fixable
+post hoc, yet the decision failure is not. For each frontier configuration we compute the net calibration error
+(NCE), a signed calibration error \citep{groot2024overconfidence}: mean decision-confidence ($\max(p,1{-}p)$) minus
+decision accuracy on clean eyes (positive $=$ overconfident; the opposite sign to Groot et al.'s
+accuracy$-$confidence convention). (The ECE in Table~\ref{tab:main} is instead the
+referral-probability, or positive-class, calibration error; the NCE and the reliability diagram use the
+predicted-class confidence $\max(p,1{-}p)$. Both show the frontier VLMs are badly miscalibrated.) The Gemini and GPT
+configurations have NCE \num{0.23}--\num{0.42} (few-shot \num{0.23}--\num{0.32}, zero-shot up to \num{0.42}); Claude
+Opus~5 is far smaller (\num{0.08}--\num{0.13}), matching the diagram ordering above.
+Post-hoc temperature scaling \citep{guo2017calibration} (one scalar fit on a held-out clean half by minimizing NLL)
+removes most of the clean ECE (on the held-out clean half: Gemini 3.6 Flash few-shot \num{0.27}$\rightarrow$\num{0.07},
+GPT-5.6 Sol \num{0.26}$\rightarrow$\num{0.07}), but, being strictly monotone, it preserves the score ordering and
+fixes the $0.5$ decision point, so the decision-flip is exactly unchanged (and the refit 90\%-specificity operating
+point selects the same decisions). Calibration is a post-hoc fix; the
+scanner-driven decision-flip is not.
+
+\paragraph{Calibration beyond fixed-bin ECE.} Fixed-bin ECE is a biased estimator at $n{\approx}300$--$360$ and
+depends on the binning scheme, so we recompute the clean-eye calibration under two complementary reads with different
+failure modes: adaptive (equal-count) ECE, which debiases the fixed binning, and the Brier score, a strictly proper
+scoring rule with no binning (the proper-score check used under dataset shift by \citet{ovadia2019shift}). Both are
+reported for every reader on both axes as extra columns in the full tables (App.~\ref{app:fulltables}). The frontier
+VLMs stay worse than every FM/CNN reader on all three reads (fixed-bin ECE, adaptive ECE, and Brier; Claude Opus~5 the
+least-overconfident exception), so the overconfidence gap is not an artifact of the ECE binning.
+
+\section{Shift calibration and real-data corroboration}
+\label{app:validity}
+
+The synthetic shift is magnitude-tied to the published cross-scanner agreement literature and direction-corroborated
+by real data. \emph{Thickness-map axis:} the Cirrus$\rightarrow$Spectralis RNFL offset reproduces
+\citet{warner2011loa}'s $+1.94\,\mu$m bias and $\pm7.68\,\mu$m 95\% limits (difference SD $3.92\,\mu$m,
+Fig.~\ref{fig:a1}a, a Bland--Altman plot \citep{blandaltman1986}). The per-eye spread is anatomy-coupled, drawn in
+quadrature from segmentation, centration, and magnification mechanisms (between-eye SDs $2.8/2.3/1.5\,\mu$m) with
+superior/inferior-wider sector gains, so limits widen in the vulnerable sectors (Fig.~\ref{fig:a1}b). The magnitude
+is calibrated to Warner's Bland--Altman statistics, and the superior/inferior-wider spatial profile follows the
+dominant cross-device error mechanism, scan-circle centration, which perturbs the superior and inferior sectors most
+\citep{cheung2009scancircle}; the three mechanism components sum in quadrature to the published SD by construction,
+so both the shift magnitude and its sector direction are anchored in measured cross-scanner data and established
+optics. The finer within-eye texture is a small mean-zero term for spatially-correlated segmentation differences, which
+are largest in the superior and inferior sectors \citep{mansberger2017segerrors}. This smoothness is data-driven: the real cross-vendor cpRNFL difference
+(GLEAM Spectralis vs GOALS Topcon) is itself spatially smooth, with $74\%$ of its angular variance
+in the lowest five harmonics and a $\sim$$22^{\circ}$ correlation length (roughness $0.79$ vs $1.41$ for white
+noise), i.e.\ a low-frequency difference, not per-pixel noise. Being mean-zero, the texture leaves the calibrated
+between-eye bias and LoA intact; these are validated directly by the Bland--Altman fit (Fig.~\ref{fig:a1}a) and the
+monotone dose--response (Fig.~\ref{fig:a1}c), so Fig.~\ref{fig:overview}'s difference panels illustrate the
+calibrated shift rather than assert a per-pixel measurement. Decision-flip and read-drift rise monotonically with dose (Fig.~\ref{fig:a1}c). \emph{B-scan axis:} the
+Spectralis$\rightarrow$Topcon stress changes frame-averaging (16$\rightarrow$1 frames), injects a
+multiplicative-Gamma speckle field that lifts display-speckle contrast $0.148\rightarrow0.184$ (matched to real
+RETOUCH, Fig.~\ref{fig:a2}a), adds near-inert axial blur ($\sqrt{15}\,\mu$m FWHM at $10\,\mu$m/px), and dims
+backscatter contrast $\times0.773$. Real cross-vendor cpRNFL corroborates that disc anatomy is vendor-consistent:
+with a single segmenter \citep{driessen2024}, cpRNFL profiles from GLEAM Spectralis and GOALS Topcon
+\citep{goals2022} B-scans agree in shape ($r\approx0.93$, Fig.~\ref{fig:a2}b). This corroborates that the scanner
+perturbs the measurement, not the anatomy; it is a shape agreement, not a claim of scanner-interchangeability.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.32\linewidth]{figures/figA1a_bland_altman.pdf}\hfill
+  \includegraphics[width=0.32\linewidth]{figures/figA1b_sector_loa.pdf}\hfill
+  \includegraphics[width=0.32\linewidth]{figures/figA1c_dose_response.pdf}
+  \caption{\textbf{Thickness-map shift is LoA-calibrated.} (a)~Bland--Altman of the synthetic per-eye differences
+  against Warner's published 95\% limits (band); (b)~limits widen in the superior/inferior sectors;
+  (c)~decision-flip and read-drift rise monotonically with shift dose, a graded axis rather than a cliff.}
+  \label{fig:a1}
+\end{figure}
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.44\linewidth]{figures/figA2a_speckle.pdf}\hfill
+  \includegraphics[width=0.44\linewidth]{figures/figA2b_crossvendor.pdf}
+  \caption{\textbf{Appearance/anatomy validity.} (a)~Real per-vendor RETOUCH display speckle (Cirrus $>$ Topcon $>$
+  Spectralis) validates the frame-averaging direction and the calibrated sim moves GLEAM toward Topcon;
+  (b)~real cross-vendor cpRNFL: GLEAM Spectralis vs.\ GOALS Topcon profiles (single segmenter) agree in shape
+  ($r\approx0.93$; shape only, not device-interchangeability).}
+  \label{fig:a2}
+\end{figure}
+
+\section{Thickness-map vs.\ raw-B-scan reading, per VLM (F2)}
+\label{app:grounding}
+Fig.~\ref{fig:grounding} details F2. Rendering the same eye as a color thickness map instead of a raw B-scan raises
+each stronger frontier VLM into the non-VLM reader band on discrimination and pulls it down on ECE and decision-flip
+together, while the small open/specialist VLMs do not recover. This is a cross-dataset comparison (the two axes use
+different datasets, vendors and label sources), so we read it as reader-specific, not as evidence that a thickness
+map is intrinsically a better input (\S\ref{sec:discussion}).
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.72\linewidth]{figures/figA4_grounding.pdf}
+  \caption{\textbf{The per-VLM thickness-map improvement, in three metrics.} Per-VLM change from the raw B-scan to the color
+  thickness-map render (few-shot); the three frontier VLMs share the vermilion triangle and are distinguished by
+  line style. The stronger frontier VLMs rise into the per-axis non-VLM reader band (10--90th percentile of the FM
+  and CNN readers) on clean AUC and descend toward it on ECE and decision-flip together. The small open
+  (Qwen3-VL-8B) and specialist (MedGemma-1.5-4B) models do not recover.}
+  \label{fig:grounding}
+\end{figure}
+
+\section{Subgroup robustness}
+\label{app:subgroups}
+We ask whether the scanner-induced instability falls unevenly across disease severity or demographics, recomputing
+decision-flip per subgroup for every configuration on the seed-0 test split
+(\texttt{scripts/analyze\_subgroups.py}). Fig.~\ref{fig:subgroups} aggregates this by the four
+capable reader classes (class mean and across-model spread; the near-chance open/specialist VLMs are near-constant and
+omitted from the figure), and Tables~\ref{tab:sev}--\ref{tab:demo} give the per-reader point estimates for all
+configurations. Decision-flip stays broadly comparable across subgroups. No severity grade or demographic group
+shows a consistently elevated flip once the wide eye-level bootstrap CIs are accounted for. The one clear pattern is the B-scan over-referral of \S\ref{sec:findings}: for the appearance-keyed
+readers the \emph{healthy} eyes flip most (MIRAGE\,$\cdot$\,LP \num{0.62} vs.\ \num{0.28} moderate/advanced; RETFound\,$\cdot$\,LP
+\num{0.47} vs.\ \num{0.09}; SmallCNN \num{0.35} vs.\ \num{0.15}), i.e.\ the false-referral load concentrates in the
+screening-relevant non-glaucoma population. Sensitivity change ($\Delta$sens) is likewise small and CI-overlapping
+across the glaucoma severity subgroups. \emph{Caveats}: the GLEAM severity subgroups are small ($n\approx 57$--$184$ per
+grade, so 95\% CIs span $\approx\pm0.08$--$0.13$); \textbf{image quality is not recorded in either dataset} and GLEAM
+carries no demographics, so those subgroup axes cannot be tested and are left to future work.
+
+\begin{figure}[tbp]
+  \centering
+  \includegraphics[width=0.86\linewidth]{figures/figA5_subgroups.pdf}
+  \caption{\textbf{Decision-flip by subgroup, aggregated by reader class} (the four capable Fig.~\ref{fig:stability}
+  classes; the near-constant open/specialist VLMs are omitted here but listed in Tables~\ref{tab:sev}--\ref{tab:demo}).
+  Markers are the class mean across its models; bars span the min--max across those models. \textbf{(a)}~B-scan
+  disease severity: for the appearance-keyed classes (OCT/generic FM, ImageNet CNN, from-scratch CNN) the healthy-eye
+  flip is highest (over-referral on the screening population; the wide bars are within-class model spread, e.g.\ robust
+  DINOv2\,$\cdot$\,FT vs.\ unstable MIRAGE\,$\cdot$\,LP), whereas the frontier VLMs are flat. \textbf{(b)}~Thickness-map
+  severity and \textbf{(c)}~map demographics: flip stays low and the subgroups cluster for every class, with no group
+  consistently elevated. The flip scale differs between (a) and (b,c).}
+  \label{fig:subgroups}
+\end{figure}
+
+\input{subgroup_tables}
+
+\section{Full per-axis tables}
+\label{app:fulltables}
+\input{appendix_tables}
+
+\section{Reproducibility and broader impact}
+\label{app:repro}
+
+\paragraph{Reproducibility.} We release the full pipeline, the verbatim prompts (\S\ref{app:prompts}), the per-configuration
+model IDs and inference settings (Table~\ref{tab:models}), and all seeds. Splits are eye-level and seed-fixed;
+encoder probes are fit on the seed-0 split; VLM elicitation is greedy (single sample). Because
+frontier API models drift, we pin each model ID and API date and archive the raw per-eye model responses, so every
+table and figure reproduces exactly from the released code and responses; re-querying a live API may differ as the
+served model changes. On acceptance we release, under the MIT license, the exact synthetic-shift transforms (the
+B-scan appearance transform and the thickness-map scanner-offset, with every parameter and per-eye seed) together
+with the committed per-eye outputs, so a new model can be scored directly against the calibrated shift; the
+datasets remain under their own access terms (GLEAM; Harvard-GDP CC BY-NC-ND 4.0; GOALS; RETOUCH).
+
+\paragraph{Broader impact.} The deployment-relevant finding is a safety one: a reader can preserve AUC under
+a scanner change while its diagnostic decisions flip, so a naive AUC-only validation can
+license an unsafe glaucoma-diagnosis reader. We advocate decision-level, calibration-aware, shift-aware evaluation
+before deployment, and release the benchmark as a reusable check. The study uses de-identified public research
+datasets; no new patient data were collected.
